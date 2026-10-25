@@ -1,0 +1,450 @@
+chain,address,exchange,source
+arbitrum,0x000000000000d5775ff7721cefb8097af62e52dd,OKX,"eth-labels: OKX 213 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x00000000004e3d5628234f18b977041e5242651f,OKX,"eth-labels: OKX 214 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x03ae1a796dfe0400439211133d065bda774b9d3e,OKX,"eth-labels: OKX 82 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x03e6fa590cadcf15a38e86158e9b3d06ff3399ba,KuCoin,eth-labels: KuCoin 2 (arbitrum)
+arbitrum,0x0529ea5885702715e83923c59746ae8734c553b7,Bitpanda,"eth-labels: Bitpanda 18 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x05e3a758fdd29d28435019ac453297ea37b61b62,Coinbase,eth-labels: Coinbase 1 (arbitrum)
+arbitrum,0x0799ddbf6f14db566ca4df4ff0575c4cc1e7749c,OKX,"eth-labels: OKX 72 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x0a80992f815973ad7e7a9c340760fed41d96c450,Crypto.com,"eth-labels: Crypto.com 40 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x0d0707963952f2fba59dd06f2b425ace40b492fe,Gate,"eth-labels: Gate.io (avalanche, bsc, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x1714400ff23db4af24f9fd64e7039e6597f18c2b,Crypto.com,"eth-labels: Crypto.com 4 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x1763f1a93815ee6e6bc3c4475d31cc9570716db2,Binance,"eth-labels: Binance 66 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x176f3dab24a159341c0509bb36b833e7fdd0a132,Poloniex,eth-labels: Poloniex 9 (ethereum); seen moving ARB on arbitrum
+arbitrum,0x17a30350771d02409046a683b18fe1c13ccfc4a8,KuCoin,"eth-labels: KuCoin 40 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x18e226459ccf0eec276514a4fd3b226d8961e4d1,Binance,"eth-labels: Binance 107 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x1985ea6e9c68e1c272d8209f3b478ac2fdb25c87,Coinbase,"eth-labels: Coinbase 41 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x1c3944173abee256456b1498299fc501ad5bbd6f,Bybit,"eth-labels: Bybit 10 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x20fa1822a87d4e7a3ccf20f86e716ef3772ecff1,Crypto.com,"eth-labels: Crypto.com 2 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x25681ab599b4e2ceea31f8b498052c53fc2d74db,Binance,"eth-labels: Binance 94 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x2864de013415b6c2c7a96333183b20f0f9cc7532,Korbit,"eth-labels: Korbit 2 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x28c6c06298d514db089934071355e5743bf21d60,Binance,"eth-labels: Binance 14 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x2a62c4acca1a166ee582877112682cae8cc0ffe7,Kraken,"eth-labels: Kraken 82 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x2b3bf74b29f59fb8dda41cf3d6a8da28cf8e7921,BingX,"eth-labels: BingX 29 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x3304e22ddaa22bcdc5fca2269b418046ae7b566a,Binance,"eth-labels: Binance 73 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x345d8e3a1f62ee6b1d483890976fd66168e390f2,Binance,"eth-labels: Binance 23 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x361ad597f6a0cf86f8ab14234ca17a5739a67458,Bithumb,"eth-labels: Bithumb 365 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x377b8ce04761754e8ac153b47805a9cf6b190873,Upbit,"eth-labels: Upbit 59 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x3931dab967c3e2dbb492fe12460a66d0fe4cc857,Binance,"eth-labels: Binance 89 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x3c5883c650d600bd543a9b5c8d9a3a6f5d16b8f4,OKX,"eth-labels: OKX 57 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x3dd1d15b3c78d6acfd75a254e857cbe5b9ff0af2,Coinbase,eth-labels: Coinbase 2 (arbitrum)
+arbitrum,0x3ddb5d1247adc837cec3ba81edc923a4a230aa8f,Bybit,"eth-labels: Bybit 8 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x3f5ce5fbfe3e9af3971dd833d26ba9b5c936f0be,Binance,"eth-labels: Binance (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x43684d03d81d3a4c70da68febdd61029d426f042,Binance,"eth-labels: Binance 117 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x46340b20830761efd32832a74d7169b29feb9758,Crypto.com,"eth-labels: Crypto.com 2 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x490b1e689ca23be864e55b46bf038e007b528208,Kraken,"eth-labels: Kraken 44 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x4aec0e98fc1fb55b9cc2faaa7a81acca42cb4e96,Binance,"eth-labels: Binance 115 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x4ce053dfe58541e08f149c1050eb3df09d7a40bc,Bybit,"eth-labels: Bybit 5 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x4e2757e46103556f98d4d036d8efe18389b89f51,OKX,"eth-labels: OKX 48 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x51cf2d9f67078d76c21258c5aa2cb39a2ca24999,WhiteBIT,"eth-labels: WhiteBIT 10 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x559432e18b281731c054cd703d4b49872be4ed53,OKX,"eth-labels: OKX: Hot Wallet 5 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x563537412ad5d49faa7fa442b9193b8238d98c3c,Coinbase,eth-labels: Coinbase 4 (arbitrum)
+arbitrum,0x589abd0cdcd897240f311f1eff8635271f6c605b,Crypto.com,"eth-labels: Crypto.com 35 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x5a52e96bacdabb82fd05763e25335261b270efcb,Binance,"eth-labels: Binance 28 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x5bdf85216ec1e38d6458c870992a69e38e03f7ef,Bitget,"eth-labels: Bitget 5 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x5f65f7b609678448494de4c87521cdf6cef1e932,Gemini,"eth-labels: Gemini 4 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x5f8215ee653cb7225c741c7aa8591468d1f158b8,OKX,"eth-labels: OKX 109 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x62383739d68dd0f844103db8dfb05a7eded5bbe6,OKX,"eth-labels: OKX 37 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x69b90c1d460f9e263a43272564892c00eb040962,Coinbase,"eth-labels: Coinbase 90 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x6c69fa64ec451b1bc5b5fbaa56cf648a281634be,BingX,"eth-labels: BingX 15 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x72e93123e8b5d168246739cdc45360ea11209364,Kraken,"eth-labels: Kraken (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x742d35cc6634c0532925a3b844bc454e4438f44e,Bitfinex,"eth-labels: Bitfinex 2 (42220, avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x766182bfa8b8790d61c4d7e7912c1c3a6f42cef6,BingX,"eth-labels: BingX 3 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec,Bitfinex,"eth-labels: Bitfinex: Hot Wallet (42220, avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x7dafba1d69f6c01ae7567ffd7b046ca03b706f83,Kraken,"eth-labels: Kraken 245 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x7e278a68a35d76a7e4b2c9d8b778acd775c6d832,Binance,"eth-labels: Binance 75 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x7e4aa755550152a522d9578621ea22edab204308,OKX,"eth-labels: OKX 38 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x7fe81abf17890ff0f010a6086a63d90d3ed81efe,Coinbase,"eth-labels: Coinbase 93 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x82d015d74670d8645b56c3f453398a3e799ee582,HTX,"eth-labels: HTX 69 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x835678a611b28684005a5e2233695fb6cbbb0007,Binance,"eth-labels: Binance 70 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x8550e644d74536f1df38b17d5f69aa1bfe28ae86,Korbit,"eth-labels: Korbit 3 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x8894e0a0c962cb723c1976a4421c95949be2d4e3,Binance,"eth-labels: Binance: Hot Wallet 6 (avalanche, bsc, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x88a1493366d48225fc3cefbdae9ebb23e323ade3,Bybit,"eth-labels: Bybit 2 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x892e9e24aea3f27f4c6e9360e312cce93cc98ebe,Binance,"eth-labels: Binance 30 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x92927a664c88449318e14d0fd582c787ae2cd934,Kraken,"eth-labels: Kraken 41 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x94dbf04e273d87e6d9bed68c616f43bf86560c74,Kraken,"eth-labels: Kraken 75 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x97b9d2102a9a65a26e1ee82d59e42d1b73b68689,Bitget,"eth-labels: Bitget 3 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0x9b64203878f24eb0cdf55c8c6fa7d08ba0cf77e5,MEXC,eth-labels: MEXC (arbitrum)
+arbitrum,0xa0fca8fa8e9c6aa77305f94be0e03908d0a42900,BingX,"eth-labels: BingX 5 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xa656f7d2a93a6f5878aa768f24eb38ec8c827fe2,Coinbase,eth-labels: Coinbase 5 (arbitrum)
+arbitrum,0xa7c0d36c4698981fab42a7d8c783674c6fe2592d,Binance,"eth-labels: Binance 74 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43,Coinbase,eth-labels: Coinbase 10 (ethereum); seen moving ARB on arbitrum
+arbitrum,0xacd03d601e5bb1b275bb94076ff46ed9d753435a,Binance,"eth-labels: Binance 1 (avalanche, optimism, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xafee421482faea92292ed3ffe29371742542ad72,OKX,"eth-labels: OKX 230 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xb38e8c17e38363af6ebdcb3dae12e0243582891d,Binance,eth-labels: Binance Hot Wallet (arbitrum)
+arbitrum,0xb4af4d0b9bd38c9f2fec9778e48667912f778f01,BitMart,"eth-labels: BitMart 21 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xb86f1061e0d79e8319339d5fdbb187d4e7ad3300,MEXC,"eth-labels: MEXC 30 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xb8cbbf78c7ad1cdf4ca0e111b35491f3bfe027ac,Bitpanda,"eth-labels: Bitpanda 6 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xb8e6d31e7b212b2b7250ee9c26c56cebbfbe6b23,KuCoin,"eth-labels: KuCoin 15 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xba5cfbc7c1e08156d9e6e0d91a66ad3bcff7956a,HTX,"eth-labels: HTX 87 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xc06e0513a150a021104fdcdd20ce362fa593ba1f,LBank,"eth-labels: LBank: Hot Wallet 2 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xc3c8e0a39769e2308869f7461364ca48155d1d9e,Binance,"eth-labels: Binance 24 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xc3dcd744db3f114f0edf03682b807b78a227bf74,BingX,"eth-labels: BingX 20 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xc68c17e6eec0fde3605c595c9b98de5c1a4cc3e4,OKX,"eth-labels: OKX 101 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019,Coinbase,"eth-labels: Coinbase 26 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xc882b111a75c0c657fc507c04fbfcd2cc984f071,Gate,"eth-labels: Gate.io 5 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xcb95ca610c91629c835b129355999b7acdc4cc06,BingX,"eth-labels: BingX 28 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xcc282e2004428939ee5149a9e7872f0b4d5d5ec7,Kraken,eth-labels: Kraken: Hot Wallet 3 (ethereum); seen moving ARB on arbitrum
+arbitrum,0xce2cc46682e9c6d5f174af598fb4931a9c0be68e,Crypto.com,"eth-labels: Crypto.com 24 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xce7ec11a5f306c6b896526149db1a86c7d1531e2,HTX,"eth-labels: HTX 70 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xd2dd7b597fd2435b6db61ddf48544fd931e6869f,Kraken,"eth-labels: Kraken 246 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xd38cf87f114f2a0582c329fb9df4f7044ce71330,BingX,"eth-labels: BingX 26 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xd5268a476aadd1a6729df5b3e5e8f2c1004139af,Coinbase,"eth-labels: Coinbase 198 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xd55c1ae0e52918c864616dd5ffba6c50b8fbe39e,Coinbase,"eth-labels: Coinbase 85 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xd6216fc19db775df9774a6e33526131da7d19a2c,KuCoin,eth-labels: KuCoin (arbitrum)
+arbitrum,0xd6e0f7da4480b3ad7a2c8b31bc5a19325355ca15,Korbit,"eth-labels: Korbit 5 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xd7a827fbaf38c98e8336c5658e4bcbcd20a4fd2d,Crypto.com,"eth-labels: Crypto.com 20 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xda43c54ce5083885f561e05fd6220b7096be246c,BingX,"eth-labels: BingX 2 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xe4516477adacc6682cf18069475f676a5b5667f9,BingX,"eth-labels: BingX 14 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xe68ee8a12c611fd043fb05d65e1548dc1383f2b9,Coinbase,eth-labels: Coinbase 3 (arbitrum)
+arbitrum,0xebe80f029b1c02862b9e8a70a7e5317c06f62cae,OKX,"eth-labels: OKX 39 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xed55e0d547fd2fa53aa64f587b21a9caa9e2d90f,OKX,"eth-labels: OKX 142 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xee5b5b923ffce93a870b3104b7ca09c3db80047a,Bybit,"eth-labels: Bybit: Hot Wallet 4 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xeefbd9626704dcd9c672c1031fc81e7f346ff3b8,WhiteBIT,"eth-labels: WhiteBIT 9 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xf0bc8fddb1f358cef470d63f96ae65b1d7914953,Korbit,"eth-labels: Korbit 8 (avalanche, ethereum, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xf2dbc42875e7764edbd89732a15214a9a0deb085,HTX,"eth-labels: HTX 77 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xf332761c673b59b21ff6dfa8ada44d78c12def09,OKX,"eth-labels: OKX 141 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xf3f094484ec6901ffc9681bcb808b96bafd0b8a8,KuCoin,eth-labels: KuCoin 3 (arbitrum)
+arbitrum,0xf60e748aa03db7e382ef5df9de912f1f88e97a37,Bithumb,"eth-labels: Bithumb 464 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xf89d7b9c864f589bbf53a82105107622b35eaa40,Bybit,"eth-labels: Bybit: Hot Wallet (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xf977814e90da44bfa03b6295a0616a897441acec,Binance,"eth-labels: Binance: Hot Wallet 20 (avalanche, bsc, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xff16739c86855937e14facd309f98a44285b5ca0,Coinbase,"eth-labels: Coinbase 91 (avalanche, worldchain); seen moving ARB on arbitrum"
+arbitrum,0xffa8db7b38579e6a2d14f9b347a9ace4d044cd54,Bitget,"eth-labels: Bitget 35 (avalanche, worldchain); seen moving ARB on arbitrum"
+ethereum,0x00028f59e485a665cb4263c231eb4b7e8a2021a7,Upbit,eth-labels: Upbit 11 (ethereum)
+ethereum,0x007abbe8057433641acb791d966d33a12cf82d01,Poloniex,eth-labels: Poloniex 8 (ethereum)
+ethereum,0x00bdb5699745f5b860228c8f939abf1b9ae374ed,Bitstamp,eth-labels: Bitstamp 1 (ethereum)
+ethereum,0x012480c08d20a14cf3cb495e942a94dd926dcc8f,Kraken,eth-labels: Kraken 55 (ethereum)
+ethereum,0x015f46294fd72f5448eb602ef8a252574bd9cbcd,Upbit,eth-labels: Upbit 6 (ethereum)
+ethereum,0x0162cd2ba40e23378bf0fd41f919e1be075f025f,MEXC,eth-labels: MEXC 14 (ethereum)
+ethereum,0x0211f3cedbef3143223d3acf0e589747933e8527,MEXC,eth-labels: MEXC 2 (ethereum)
+ethereum,0x02466e547bfdab679fc49e96bbfc62b9747d997c,Coinbase,eth-labels: Coinbase 8 (ethereum)
+ethereum,0x059799f2261d37b829c2850cee67b5b975432271,Bitstamp,eth-labels: Bitstamp 4 (ethereum)
+ethereum,0x05e3a758fdd29d28435019ac453297ea37b61b62,Coinbase,eth-labels: Coinbase 27 (ethereum)
+ethereum,0x05ff6964d21e5dae3b1010d5ae0465b3c450f381,Kraken,eth-labels: Kraken: Hot Wallet 4 (ethereum)
+ethereum,0x062448f804191128d71fc72e10a1d13bd7308e7e,Deribit,eth-labels: Deribit 3 (ethereum)
+ethereum,0x0639556f03714a74a5feeaf5736a4a64ff70d206,Bitget,eth-labels: Bitget 4 (ethereum)
+ethereum,0x098cbdd8eb01b19d37539644821772e9bde12d55,Kraken,eth-labels: Kraken 20 (ethereum)
+ethereum,0x0a869d79a7052c7f1b55a8ebabbea3420f0d1e13,Kraken,eth-labels: Kraken 2 (ethereum)
+ethereum,0x0b0f7ebf967146566799229394171fc47f1a765a,Bitstamp,eth-labels: Bitstamp 7 (ethereum)
+ethereum,0x0b73f67a49273fc4b9a65dbd25d7d0918e734e63,Bitfinex,eth-labels: Bitfinex 12 (ethereum)
+ethereum,0x0c01089aedc45ab0f43467cceca6b4d3e4170bea,Korbit,eth-labels: Korbit 1 (ethereum)
+ethereum,0x0c4ed2551f687d785866ebe7ed73bc2f4dd7c88e,Bithumb,eth-labels: Bithumb 17 (ethereum)
+ethereum,0x0cd76cd43992c665fdc2d8ac91b935ca3165e782,Bitfinex,eth-labels: Bitfinex 18 (ethereum)
+ethereum,0x0d0452f487d1edc869d1488ae984590ca2900d2f,Kraken,eth-labels: Kraken 16 (ethereum)
+ethereum,0x0d0707963952f2fba59dd06f2b425ace40b492fe,Gate,eth-labels: Gate.io (ethereum)
+ethereum,0x0e33be39b13c576ff48e14392fbf96b02f40cd34,Kraken,eth-labels: Kraken 52 (ethereum)
+ethereum,0x0ef6aeb825dc4c9983d551f8afefaae9d79165c6,Kraken,eth-labels: Kraken 70 (ethereum)
+ethereum,0x10593a64b7b7bb0ea29b8c01f1619ca8ff294b2f,Kraken,eth-labels: Kraken 25 (ethereum)
+ethereum,0x109be9d7d5f64c8c391ced3a8f69bdef20fcaea9,Kraken,eth-labels: Kraken 74 (ethereum)
+ethereum,0x111cff45948819988857bbf1966a0399e0d1141e,bitFlyer,eth-labels: bitFlyer (ethereum)
+ethereum,0x1151314c646ce4e0efd76d1af4760ae66a9fe30f,Bitfinex,eth-labels: Bitfinex 1 (ethereum)
+ethereum,0x149ded7438caf5e5bfdc507a6c25436214d445e1,Bitget,eth-labels: Bitget: Hot Wallet 4 (ethereum)
+ethereum,0x1522900b6dafac587d499a862861c0869be6e428,Bitstamp,eth-labels: Bitstamp 2 (ethereum)
+ethereum,0x15878e87c685f866edfaf454be6dc06fa517b35b,Bithumb,eth-labels: Bithumb 7 (ethereum)
+ethereum,0x167a9333bf582556f35bd4d16a7e80e191aa6476,Coinone,eth-labels: Coinone (ethereum)
+ethereum,0x1692e170361cefd1eb7240ec13d048fd9af6d667,KuCoin,eth-labels: KuCoin 5 (ethereum)
+ethereum,0x16b2b042f15564bb8585259f535907f375bdc415,Kraken,eth-labels: Kraken 33 (ethereum)
+ethereum,0x16b34756653f88a89005e96c0622832d8fb6b0b5,Kraken,eth-labels: Kraken 65 (ethereum)
+ethereum,0x176f3dab24a159341c0509bb36b833e7fdd0a132,Poloniex,eth-labels: Poloniex 9 (ethereum)
+ethereum,0x183b1ffb0aa9213b9335adfad82e47bfb02f8d24,Gemini,eth-labels: Gemini 8 (ethereum)
+ethereum,0x186549a4ae594fc1f70ba4cffdac714b405be3f9,Bithumb,eth-labels: Bithumb 10 (ethereum)
+ethereum,0x1985ea6e9c68e1c272d8209f3b478ac2fdb25c87,Coinbase,eth-labels: Coinbase 41 (ethereum)
+ethereum,0x19ab546e77d0cd3245b2aad46bd80dc4707d6307,Coinbase,eth-labels: Coinbase 17 (ethereum)
+ethereum,0x19d39241e02d612264b9090b74e14acdfb54b8f8,Upbit,eth-labels: Upbit 8 (ethereum)
+ethereum,0x1a96e5da1315efcf9b75100f5757d5e8b76abb0c,Bitget,eth-labels: Bitget 16 (ethereum)
+ethereum,0x1ab4973a48dc892cd9971ece8e01dcc7688f8f23,Bitget,eth-labels: Bitget 6 (ethereum)
+ethereum,0x1ae3739e17d8500f2b2d80086ed092596a116e0b,Bitget,eth-labels: Bitget 7 (ethereum)
+ethereum,0x1b29dd8ff0eb3240238bf97cafd6edea05d5ba82,Bitfinex,eth-labels: Bitfinex 6 (ethereum)
+ethereum,0x1b8766d041567eed306940c587e21c06ab968663,Bitfinex,eth-labels: Bitfinex 14 (ethereum)
+ethereum,0x1c4b70a3968436b9a0a9cf5205c787eb81bb558c,Gate,eth-labels: Gate.io 3 (ethereum)
+ethereum,0x1d5ba5414f2983212e03bf7725add9eb4cdb00dc,Bitget,eth-labels: Bitget 19 (ethereum)
+ethereum,0x1d7531339edb15f1d36020e515f63363c5d63abf,Bithumb,eth-labels: Bithumb 22 (ethereum)
+ethereum,0x1e2fcfd26d36183f1a5d90f0e6296915b02bcb40,Coinone,eth-labels: Coinone 2 (ethereum)
+ethereum,0x1e72e2a0665cd5db0b59397d242633b6e9834506,Bithumb,eth-labels: Bithumb 16 (ethereum)
+ethereum,0x209c4784ab1e8183cf58ca33cb740efbf3fc18ef,Poloniex,eth-labels: Poloniex 2 (ethereum)
+ethereum,0x20fe51a9229eef2cf8ad9e89d91cab9312cf3b7a,Coinbase,eth-labels: Coinbase 21 (ethereum)
+ethereum,0x2140efd7ba31169c69dfff6cdc66c542f0211825,Bithumb,eth-labels: Bithumb 3 (ethereum)
+ethereum,0x234ee9e35f8e9749a002fc42970d570db716453b,Gate,eth-labels: Gate.io 4 (ethereum)
+ethereum,0x236f9f97e0e62388479bf9e5ba4889e46b0273c3,OKX,eth-labels: OKX 2 (ethereum)
+ethereum,0x241361559feef80ef137302153bd9ed2f25db3ef,Kraken,eth-labels: Kraken 244 (ethereum)
+ethereum,0x24d114a75f70ff98eb29739a4503955462b36470,Bithumb,eth-labels: Bithumb 26 (ethereum)
+ethereum,0x267be1c1d684f78cb4f6a176c4911b741e4ffdc0,Kraken,eth-labels: Kraken 4 (ethereum)
+ethereum,0x26a78d5b6d7a7aceedd1e6ee3229b372a624d8b7,Kraken,eth-labels: Kraken 57 (ethereum)
+ethereum,0x276cdba3a39abf9cedba0f1948312c0681e6d5fd,OKX,eth-labels: OKX 22 (ethereum)
+ethereum,0x27fe65c7890841ff9943208516f66fe244a8a3eb,Bithumb,eth-labels: Bithumb 18 (ethereum)
+ethereum,0x28140cb1ac771d4add91ee23788e50249c10263d,Bitfinex,eth-labels: Bitfinex 16 (ethereum)
+ethereum,0x2864de013415b6c2c7a96333183b20f0f9cc7532,Korbit,eth-labels: Korbit 2 (ethereum)
+ethereum,0x28c5b0445d0728bc25f143f8eba5c5539fae151a,Coinbase,eth-labels: Coinbase 36 (ethereum)
+ethereum,0x28e71d0b7f7f29106a1be2a5b289cab331e7b56f,Coinbase,eth-labels: Coinbase 44 (ethereum)
+ethereum,0x2910543af39aba0cd09dbb2d50200b3e800a63d2,Kraken,eth-labels: Kraken (ethereum)
+ethereum,0x29728d0efd284d85187362faa2d4d76c2cfc2612,Kraken,eth-labels: Kraken 9 (ethereum)
+ethereum,0x2b5634c42055806a59e9107ed44d43c426e58258,KuCoin,eth-labels: KuCoin (ethereum)
+ethereum,0x2bf7494111a59bd51f731dcd4873d7d71f8feeec,Bitget,eth-labels: Bitget 8 (ethereum)
+ethereum,0x2c8fbb630289363ac80705a1a61273f76fd5a161,OKX,eth-labels: OKX 4 (ethereum)
+ethereum,0x2e8f79ad740de90dc5f5a9f0d8d9661a60725e64,MEXC,eth-labels: MEXC 5 (ethereum)
+ethereum,0x2eed6a08fb89a5cd111efa33f8dca46cfbeb370f,Deribit,eth-labels: Deribit 6 (ethereum)
+ethereum,0x3052cd6bf951449a984fe4b5a38b46aef9455c8e,Bithumb,eth-labels: Bithumb 2 (ethereum)
+ethereum,0x30a2ebf10f34c6c4874b0bdd5740690fd2f3b70c,Bitfinex,eth-labels: Bitfinex 7 (ethereum)
+ethereum,0x31a36512d4903635b7dd6828a934c3915a5809be,Bitget,eth-labels: Bitget 9 (ethereum)
+ethereum,0x31d03f07178bcd74f9099afebd23b0ae30184ab5,Bithumb,eth-labels: Bithumb 8 (ethereum)
+ethereum,0x32be343b94f860124dc4fee278fdcbd38c102d88,Poloniex,eth-labels: Poloniex 1 (ethereum)
+ethereum,0x32e1931b8c180050a6ed597046502ba50f17ba4d,Upbit,eth-labels: Upbit 9 (ethereum)
+ethereum,0x333d17d3b42bf7930dbc6e852ca7bcf560a69003,Coinbase,eth-labels: Coinbase 22 (ethereum)
+ethereum,0x33de12b5cf336692c6b7cfd3aaf779425067f21c,Korbit,eth-labels: Korbit 9 (ethereum)
+ethereum,0x34036f30371847c9fd8036b7ea5af1b3126306dc,Kraken,eth-labels: Kraken 23 (ethereum)
+ethereum,0x36a85757645e8e8aec062a1dee289c7d615901ca,Bitfinex,eth-labels: Bitfinex 10 (ethereum)
+ethereum,0x390de26d772d2e2005c6d1d24afc902bae37a4bb,Upbit,eth-labels: Upbit (ethereum)
+ethereum,0x3ab28ecedea6cdb6feed398e93ae8c7b316b1182,BitMart,eth-labels: BitMart 3 (ethereum)
+ethereum,0x3cc936b795a188f0e246cbb2d74c5bd190aecf18,MEXC,eth-labels: MEXC 3 (ethereum)
+ethereum,0x3cd751e6b0078be393132286c442345e5dc49699,Coinbase,eth-labels: Coinbase 4 (ethereum)
+ethereum,0x3d55ccb2a943d88d39dd2e62daf767c69fd0179f,OKX,eth-labels: OKX 23 (ethereum)
+ethereum,0x3dd1d15b3c78d6acfd75a254e857cbe5b9ff0af2,Coinbase,eth-labels: Coinbase 24 (ethereum)
+ethereum,0x3f7e77b627676763997344a1ad71acb765fc8ac5,Bitfinex,eth-labels: Bitfinex 8 (ethereum)
+ethereum,0x3ff7215004fea03c2c745e0476e3f412050e04d1,Kraken,eth-labels: Kraken 69 (ethereum)
+ethereum,0x41e29c02713929f800419abe5770faa8a5b4dadc,KuCoin,eth-labels: KuCoin 16 (ethereum)
+ethereum,0x42436286a9c8d63aafc2eebbca193064d68068f2,OKX,eth-labels: OKX 11 (ethereum)
+ethereum,0x43984d578803891dfa9706bdeee6078d80cfc79e,Kraken,eth-labels: Kraken 11 (ethereum)
+ethereum,0x4442c3e6b5f22b8b4dc3c9329be6c850c5779e85,Kraken,eth-labels: Kraken 59 (ethereum)
+ethereum,0x45300136662dd4e58fc0df61e6290dffd992b785,KuCoin,eth-labels: KuCoin 17 (ethereum)
+ethereum,0x461249076b88189f8ac9418de28b365859e46bfd,OKX,eth-labels: OKX 9 (ethereum)
+ethereum,0x461f6dcdd5be42d41fe71611154279d87c06b406,Bitget,eth-labels: Bitget 10 (ethereum)
+ethereum,0x46340b20830761efd32832a74d7169b29feb9758,Crypto.com,eth-labels: Crypto.com 2 (ethereum)
+ethereum,0x482f02e8bc15b5eabc52c6497b425b3ca3c821e8,Bitfinex,eth-labels: Bitfinex 13 (ethereum)
+ethereum,0x490b1e689ca23be864e55b46bf038e007b528208,Kraken,eth-labels: Kraken 44 (ethereum)
+ethereum,0x491f5512751f5db45c5415049d423affaae70392,Kraken,eth-labels: Kraken 22 (ethereum)
+ethereum,0x4976a4a02f38326660d17bf34b431dc6e2eb2327,Binance,eth-labels: Binance 20 (ethereum)
+ethereum,0x4982085c9e2f89f2ecb8131eca71afad896e89cb,MEXC,eth-labels: MEXC 13 (ethereum)
+ethereum,0x4a4e859565d9b563afc8e63641542455cff0dfd2,Coinbase,eth-labels: Coinbase 15 (ethereum)
+ethereum,0x4ad64983349c49defe8d7a4686202d24b25d0ce8,KuCoin,eth-labels: KuCoin 4 (ethereum)
+ethereum,0x4bc7c6ce8ea48a7d597714ce8ec466936612c60f,Upbit,eth-labels: Upbit 10 (ethereum)
+ethereum,0x4c766def136f59f6494f0969b1355882080cf8e0,Bitstamp,eth-labels: Bitstamp 5 (ethereum)
+ethereum,0x4d19c0a5357bc48be0017095d3c871d9afc3f21d,OKX,eth-labels: OKX 17 (ethereum)
+ethereum,0x4dfc15890972ecea7a213bda2b478dabc382e7a1,Bitget,eth-labels: Bitget 15 (ethereum)
+ethereum,0x4e3ae00e8323558fa5cac04b152238924aa31b60,MEXC,eth-labels: MEXC 15 (ethereum)
+ethereum,0x4e8eddc514dc4ffbda51db5be0d3e8d82ee4871e,Upbit,eth-labels: Upbit 5 (ethereum)
+ethereum,0x4fdd5eb2fb260149a3903859043e962ab89d8ed4,Bitfinex,eth-labels: Bitfinex 5 (ethereum)
+ethereum,0x503828976d22510aad0201ac7ec88293211d23da,Coinbase,eth-labels: Coinbase 2 (ethereum)
+ethereum,0x5041ed759dd4afc3a72b8192c143f72f4724081a,OKX,eth-labels: OKX 7 (ethereum)
+ethereum,0x5051e9860c1889eb1bfa394365364b3dd61787f1,Bitget,eth-labels: Bitget 14 (ethereum)
+ethereum,0x5122e9aa635c13afd2fc31de3953e0896bac7ab4,Coinbase,eth-labels: Coinbase 39 (ethereum)
+ethereum,0x51971c86b04516062c1e708cdc048cb04fbe959f,Bitget,eth-labels: Bitget 2 (ethereum)
+ethereum,0x51e3d44172868acc60d68ca99591ce4230bc75e0,MEXC,eth-labels: MEXC 8 (ethereum)
+ethereum,0x5203aeaaee721195707b01e613b6c3259b3a5cf6,Kraken,eth-labels: Kraken 31 (ethereum)
+ethereum,0x52f5f2add61c835ff10550402a46621ebd1071d5,Kraken,eth-labels: Kraken 49 (ethereum)
+ethereum,0x53ab4a93b31f480d17d3440a6329bda86869458a,Kraken,eth-labels: Kraken 53 (ethereum)
+ethereum,0x53b36141490c419fa27ecabfeb8be1ecadc82431,Bitfinex,eth-labels: Bitfinex 17 (ethereum)
+ethereum,0x53d284357ec70ce289d6d64134dfac8e511c8a3d,Kraken,eth-labels: Kraken 6 (ethereum)
+ethereum,0x558553d54183a8542f7832742e7b4ba9c33aa1e6,Bithumb,eth-labels: Bithumb 12 (ethereum)
+ethereum,0x576b81f0c21edbc920ad63feeeb2b0736b018a58,MEXC,eth-labels: MEXC 11 (ethereum)
+ethereum,0x58edf78281334335effa23101bbe3371b6a36a51,KuCoin,eth-labels: KuCoin 20 (ethereum)
+ethereum,0x58f56615180a8eea4c462235d9e215f72484b4a3,Deribit,eth-labels: Deribit 12 (ethereum)
+ethereum,0x59448fe20378357f206880c58068f095ae63d5a5,Bitfinex,eth-labels: Bitfinex 9 (ethereum)
+ethereum,0x59708733fbbf64378d9293ec56b977c011a08fd2,Bitget,eth-labels: Bitget 23 (ethereum)
+ethereum,0x59fae149a8f8ec74d5bc038f8b76d25b136b9573,OKX,eth-labels: OKX 5 (ethereum)
+ethereum,0x5a710a3cdf2af218740384c52a10852d8870626a,Bitfinex,eth-labels: Bitfinex 15 (ethereum)
+ethereum,0x5bdf85216ec1e38d6458c870992a69e38e03f7ef,Bitget,eth-labels: Bitget 5 (ethereum)
+ethereum,0x5c52cc7c96bde8594e5b77d5b76d042cb5fae5f2,OKX,eth-labels: OKX 18 (ethereum)
+ethereum,0x5c5f75b6fba2903adf66c7bddcea99b4cce44a8a,Kraken,eth-labels: Kraken 28 (ethereum)
+ethereum,0x5e032243d507c743b061ef021e2ec7fcc6d3ab89,Upbit,eth-labels: Upbit 3 (ethereum)
+ethereum,0x5f397b62502e255f68382791947d54c4b2d37f09,Deribit,eth-labels: Deribit 8 (ethereum)
+ethereum,0x5f65f7b609678448494de4c87521cdf6cef1e932,Gemini,eth-labels: Gemini 4 (ethereum)
+ethereum,0x60637c83bd6aea40d637d91cca8d724272b2d5fa,Kraken,eth-labels: Kraken 26 (ethereum)
+ethereum,0x61edcdf5bb737adffe5043706e7c5bb1f1a56eea,Gemini,eth-labels: Gemini 3 (ethereum)
+ethereum,0x6262998ced04146fa42253a5c0af90ca02dfd2a3,Crypto.com,eth-labels: Crypto.com (ethereum)
+ethereum,0x62ac55b745f9b08f1a81dcbbe630277095cf4be1,Kraken,eth-labels: Kraken 24 (ethereum)
+ethereum,0x63f41034871535cee49996cc47719891fe03dff9,Deribit,eth-labels: Deribit 10 (ethereum)
+ethereum,0x65a0947ba5175359bb457d3b34491edf4cbf7997,OKX,eth-labels: OKX 16 (ethereum)
+ethereum,0x66c57bf505a85a74609d2c83e94aabb26d691e1f,Kraken,eth-labels: Kraken 12 (ethereum)
+ethereum,0x68841a1806ff291314946eebd0cda8b348e73d6d,OKX,eth-labels: OKX 26 (ethereum)
+ethereum,0x689c56aef474df92d44a1b70850f808488f9769c,KuCoin,eth-labels: KuCoin 2 (ethereum)
+ethereum,0x68b22215ff74e3606bd5e6c1de8c2d68180c85f7,BitMart,eth-labels: BitMart 2 (ethereum)
+ethereum,0x6916e682263df22c0a002950813bb7712d4fd441,Bithumb,eth-labels: Bithumb 23 (ethereum)
+ethereum,0x69a722f0b5da3af02b4a205d6f0c285f4ed8f396,OKX,eth-labels: OKX 12 (ethereum)
+ethereum,0x69f57499e75d18d69261d081412e794b33b0e91e,Kraken,eth-labels: Kraken 247 (ethereum)
+ethereum,0x6a3f28c47542bd5811ae37ab358d5d7e3ab84127,Bitget,eth-labels: Bitget 22 (ethereum)
+ethereum,0x6b378be3c9642ccf25b1a27facb8ace24ac34a12,Deribit,eth-labels: Deribit 5 (ethereum)
+ethereum,0x6b76f8b1e9e59913bfe758821887311ba1805cab,Coinbase,eth-labels: Coinbase 9 (ethereum)
+ethereum,0x6cc5f688a315f3dc28a7781717a9a798a59fda7b,OKX,eth-labels: OKX (ethereum)
+ethereum,0x6d0cf1f651f5ae585d24dcaa188d44e389e93d26,Kraken,eth-labels: Kraken 17 (ethereum)
+ethereum,0x6dcbce46a8b494c885d0e7b6817d2b519df64467,Coinbase,eth-labels: Coinbase 31 (ethereum)
+ethereum,0x6fb624b48d9299674022a23d92515e76ba880113,OKX,eth-labels: OKX 14 (ethereum)
+ethereum,0x6fc48de8f167456b7aa27dd4ecfabba329ea623d,Bithumb,eth-labels: Bithumb 13 (ethereum)
+ethereum,0x6fc82a5fe25a5cdb58bc74600a40a69c065263f8,Gemini,eth-labels: Gemini 2 (ethereum)
+ethereum,0x71660c4005ba85c37ccec55d0c4493e66fe775d3,Coinbase,eth-labels: Coinbase 1 (ethereum)
+ethereum,0x71beefcf9f31872ccec0bc9789f211609685205a,Kraken,eth-labels: Kraken 32 (ethereum)
+ethereum,0x72a53cdbbcc1b9efa39c834a540550e23463aacb,Crypto.com,eth-labels: Crypto.com 3 (ethereum)
+ethereum,0x731307f3b12cc56191ade83ea630a377d9a941f6,Coinbase,eth-labels: Coinbase 43 (ethereum)
+ethereum,0x731309e453972598ea05d706c6ee6c3c21ab4d2a,Bitget,eth-labels: Bitget 18 (ethereum)
+ethereum,0x735fd3c55a8be1aeb3544c7e29eba3ea23500a1c,Kraken,eth-labels: Kraken 18 (ethereum)
+ethereum,0x738cf6903e6c4e699d1c2dd9ab8b67fcdb3121ea,KuCoin,eth-labels: KuCoin 12 (ethereum)
+ethereum,0x739120ade7ed878fca5bbdb806263a8258fe2360,Coinbase,eth-labels: Coinbase 29 (ethereum)
+ethereum,0x742d35cc6634c0532925a3b844bc454e4438f44e,Bitfinex,eth-labels: Bitfinex 2 (ethereum)
+ethereum,0x7491f26a0fcb459111b3a1db2fbfc4035d096933,KuCoin,eth-labels: KuCoin 19 (ethereum)
+ethereum,0x75e89d5979e4f6fba9f97c104c2f0afb3f1dcb88,MEXC,eth-labels: MEXC 1 (ethereum)
+ethereum,0x7651fc1605a58fe9a99f1fe0d6db05d4182a9a93,Bitget,eth-labels: Bitget 21 (ethereum)
+ethereum,0x77021d475e36b3ab1921a0e3a8380f069d3263de,Deribit,eth-labels: Deribit 9 (ethereum)
+ethereum,0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec,Bitfinex,eth-labels: Bitfinex: Hot Wallet (ethereum)
+ethereum,0x7758e507850da48cd47df1fb5f875c23e3340c50,Crypto.com,eth-labels: Crypto.com 4 (ethereum)
+ethereum,0x77696bb39917c91a0c3908d577d5e322095425ca,Coinbase,eth-labels: Coinbase 11 (ethereum)
+ethereum,0x7793cd85c11a924478d358d49b05b37e91b5810f,Gate,eth-labels: Gate.io 2 (ethereum)
+ethereum,0x79990a901281bee059bb3f4d7db477f7495e2049,Kraken,eth-labels: Kraken 35 (ethereum)
+ethereum,0x7c195d981abfdc3ddecd2ca0fed0958430488e34,Coinbase,eth-labels: Coinbase 12 (ethereum)
+ethereum,0x7dafba1d69f6c01ae7567ffd7b046ca03b706f83,Kraken,eth-labels: Kraken 245 (ethereum)
+ethereum,0x7eb6c83ab7d8d9b8618c0ed973cbef71d1921ef2,OKX,eth-labels: OKX 20 (ethereum)
+ethereum,0x7ed53f6e3de6b2b4156fa8e618506e60d8e65843,Coinbase,eth-labels: Coinbase 38 (ethereum)
+ethereum,0x808e5374106e820ae54662fcf8a5e3cca6afa13d,Kraken,eth-labels: Kraken 54 (ethereum)
+ethereum,0x8103683202aa8da10536036edef04cdd865c225e,Bitfinex,eth-labels: Bitfinex 20 (ethereum)
+ethereum,0x835033bd90b943fa0d0f8e5382d9dc568d3fbd96,bitFlyer,eth-labels: bitFlyer: Hot Wallet (ethereum)
+ethereum,0x83c1c224044ef8573e9a728dbb91013cf80827e6,MEXC,eth-labels: MEXC 6 (ethereum)
+ethereum,0x83c41363cbee0081dab75cb841fa24f3db46627e,KuCoin,eth-labels: KuCoin 18 (ethereum)
+ethereum,0x842ea89f73add9e4fe963ae7929fdc1e80acdb52,Bitget,eth-labels: Bitget 13 (ethereum)
+ethereum,0x8550e644d74536f1df38b17d5f69aa1bfe28ae86,Korbit,eth-labels: Korbit 3 (ethereum)
+ethereum,0x876eabf441b2ee5b5b0554fd502a8e0600950cfa,Bitfinex,eth-labels: Bitfinex 3 (ethereum)
+ethereum,0x88bd4d3e2997371bceefe8d9386c6b5b4de60346,KuCoin,eth-labels: KuCoin 14 (ethereum)
+ethereum,0x88d34944cf554e9cccf4a24292d891f620e9c94f,Bithumb,eth-labels: Bithumb 1 (ethereum)
+ethereum,0x8913f85a2ae4ba3bf76d2a2a0418f391f2cc1519,Upbit,eth-labels: Upbit 7 (ethereum)
+ethereum,0x899b5d52671830f567bf43a14684eb14e1f945fe,KuCoin,eth-labels: KuCoin 8 (ethereum)
+ethereum,0x89e51fa8ca5d66cd220baed62ed01e8951aa7c40,Kraken,eth-labels: Kraken 7 (ethereum)
+ethereum,0x8a108e4761386c94b8d2f98a5ffe13e472cfe76a,Kraken,eth-labels: Kraken 58 (ethereum)
+ethereum,0x8ab54f9e6df35b26168847ea93dab9659ecf286d,Kraken,eth-labels: Kraken 34 (ethereum)
+ethereum,0x8af8485e1f178be06386cd3877fde20626e0284f,Coinbase,eth-labels: Coinbase 30 (ethereum)
+ethereum,0x8d6f396d210d385033b348bcae9e4f9ea4e045bd,Gemini,eth-labels: Gemini 6 (ethereum)
+ethereum,0x8dfee7dbd859989bf3e80c4f64c42b7cd283671b,Kraken,eth-labels: Kraken 68 (ethereum)
+ethereum,0x8e1701cfd85258ddb8dfe89bc4c7350822b9601d,MEXC,eth-labels: MEXC 12 (ethereum)
+ethereum,0x8fca4ade3a517133ff23ca55cdaea29c78c990b8,Poloniex,eth-labels: Poloniex 7 (ethereum)
+ethereum,0x8fecfef12757cad3327ead1746bc63db3f08b33e,Bithumb,eth-labels: Bithumb 21 (ethereum)
+ethereum,0x904cc2b2694ffa78f04708d6f7de205108213126,Deribit,eth-labels: Deribit (ethereum)
+ethereum,0x92927a664c88449318e14d0fd582c787ae2cd934,Kraken,eth-labels: Kraken 41 (ethereum)
+ethereum,0x94dbf04e273d87e6d9bed68c616f43bf86560c74,Kraken,eth-labels: Kraken 75 (ethereum)
+ethereum,0x95a9bd206ae52c4ba8eecfc93d18eacdd41c88cc,Coinbase,eth-labels: Coinbase 13 (ethereum)
+ethereum,0x97b9d2102a9a65a26e1ee82d59e42d1b73b68689,Bitget,eth-labels: Bitget 3 (ethereum)
+ethereum,0x9810762578accf1f314320cca5b72506ae7d7630,Coinbase,eth-labels: Coinbase 23 (ethereum)
+ethereum,0x9866c076afb78effd0a672bf67de4f491cbbb505,Bithumb,eth-labels: Bithumb 25 (ethereum)
+ethereum,0x98ec059dc3adfbdd63429454aeb0c990fba4a128,OKX,eth-labels: OKX 6 (ethereum)
+ethereum,0x99ddedb236f545061cb0481909428905be9c47e1,Upbit,eth-labels: Upbit 4 (ethereum)
+ethereum,0x9a9bed3eb03e386d66f8a29dc67dc29bbb1ccb72,Bitstamp,eth-labels: Bitstamp 3 (ethereum)
+ethereum,0x9b64203878f24eb0cdf55c8c6fa7d08ba0cf77e5,MEXC,eth-labels: MEXC 10 (ethereum)
+ethereum,0x9cf8d36f4aab14ef4975ac6c98f896865f0900c5,Deribit,eth-labels: Deribit 11 (ethereum)
+ethereum,0x9e00816f61a709fa124d36664cd7b6f14c13ee05,Bitget,eth-labels: Bitget 11 (ethereum)
+ethereum,0x9ee32359b180ff684a315053e418aaf223932cb9,Kraken,eth-labels: Kraken 21 (ethereum)
+ethereum,0xa054611c5b224a5f4ce93ac2a5f8d0ed17813402,Kraken,eth-labels: Kraken 60 (ethereum)
+ethereum,0xa0f6121319a34f24653fb82addc8dd268af5b9e1,Deribit,eth-labels: Deribit 2 (ethereum)
+ethereum,0xa0ff1e0f30b5dda2dc01e7e828290bc72b71e57d,Bithumb,eth-labels: Bithumb 4 (ethereum)
+ethereum,0xa152f8bb749c55e9943a3a0a3111d18ee2b3f94e,KuCoin,eth-labels: KuCoin 22 (ethereum)
+ethereum,0xa1d8d972560c2f8144af871db508f0b0b10a3fbf,KuCoin,eth-labels: KuCoin 3 (ethereum)
+ethereum,0xa25aa6dfbf6d9bbd7a6a9eb47b9f1e57a2bd92d7,Kraken,eth-labels: Kraken 61 (ethereum)
+ethereum,0xa2f443492bbb1b041fceee5194e2bc133ecc6407,Kraken,eth-labels: Kraken 67 (ethereum)
+ethereum,0xa3670e11a2f3784558632a4c30ddcfc4b74301b3,Upbit,eth-labels: Upbit 13 (ethereum)
+ethereum,0xa3682fe8fd73b90a7564585a436ec2d2aeb612ee,Coinbase,eth-labels: Coinbase 28 (ethereum)
+ethereum,0xa4a6a282a7fc7f939e01d62d884355d79f5046c1,Kraken,eth-labels: Kraken 71 (ethereum)
+ethereum,0xa656f7d2a93a6f5878aa768f24eb38ec8c827fe2,Coinbase,eth-labels: Coinbase 32 (ethereum)
+ethereum,0xa6715eafe5d215b82cb9e90a9d6c8970a7c90033,Kraken,eth-labels: Kraken 73 (ethereum)
+ethereum,0xa69b1b13b1730663044296680fabf989665c6b79,Bithumb,eth-labels: Bithumb 24 (ethereum)
+ethereum,0xa7e15ef7c01b58ebe5ef74aa73625ae4b11fe754,Deribit,eth-labels: Deribit 4 (ethereum)
+ethereum,0xa7efae728d2936e78bda97dc267687568dd593f3,OKX,eth-labels: OKX 3 (ethereum)
+ethereum,0xa83b11093c858c86321fbc4c20fe82cdbd58e09e,Kraken,eth-labels: Kraken 14 (ethereum)
+ethereum,0xa861678bee80035114b47615142e9302139a8c32,Kraken,eth-labels: Kraken 29 (ethereum)
+ethereum,0xa910f92acdaf488fa6ef02174fb86208ad7722ba,Poloniex,eth-labels: Poloniex 4 (ethereum)
+ethereum,0xa9264494a92ced04747ac84fc9ca5a0b9549b491,bitFlyer,eth-labels: bitFlyer 3 (ethereum)
+ethereum,0xa939bffb33bed18dc0063737cb9ea41a1fdb2fe3,Kraken,eth-labels: Kraken 27 (ethereum)
+ethereum,0xa9d1e08c7793af67e9d92fe308d5697fb81d3e43,Coinbase,eth-labels: Coinbase 10 (ethereum)
+ethereum,0xab5c66752a9e8167967685f1450532fb96d5d24f,HTX,eth-labels: HTX 1 (ethereum)
+ethereum,0xadae2f3b0db76cb3eafe76a8bf99b93f099c140a,Kraken,eth-labels: Kraken 48 (ethereum)
+ethereum,0xae2d4617c862309a3d75a0ffb358c7a5009c673f,Kraken,eth-labels: Kraken 10 (ethereum)
+ethereum,0xb01cb49fe0d6d6e47edf3a072d15dfe73155331c,bitFlyer,eth-labels: bitFlyer 2 (ethereum)
+ethereum,0xb302bfe9c246c6e150af70b1caaa5e3df60dac05,Gemini,eth-labels: Gemini 5 (ethereum)
+ethereum,0xb4460b75254ce0563bb68ec219208344c7ea838c,Bithumb,eth-labels: Bithumb 6 (ethereum)
+ethereum,0xb4807865a786e9e9e26e6a9610f2078e7fc507fb,Coinbase,eth-labels: Coinbase 42 (ethereum)
+ethereum,0xb5d85cbf7cb3ee0d56b3bb207d5fc4b82f43f511,Coinbase,eth-labels: Coinbase 5 (ethereum)
+ethereum,0xb624219480543c54603fb6b07d5eb347e51bffe0,Coinbase,eth-labels: Coinbase 20 (ethereum)
+ethereum,0xb739d0895772dbb71a89a3754a160269068f0d45,Coinbase,eth-labels: Coinbase 14 (ethereum)
+ethereum,0xb794f5ea0ba39494ce839613fffba74279579268,Poloniex,eth-labels: Poloniex 3 (ethereum)
+ethereum,0xb8cda8d72da558ef8f76a0d928f9652d2b003e2e,Bitget,eth-labels: Bitget 20 (ethereum)
+ethereum,0xb8e6d31e7b212b2b7250ee9c26c56cebbfbe6b23,KuCoin,eth-labels: KuCoin 15 (ethereum)
+ethereum,0xba826fec90cefdf6706858e5fbafcb27a290fbe0,Upbit,eth-labels: Upbit 2 (ethereum)
+ethereum,0xbc942e2250ec7ab83bfc4516bca4e281dbfbb393,Bitget,eth-labels: Bitget 17 (ethereum)
+ethereum,0xbda23b750dd04f792ad365b5f2a6f1d8593796f2,OKX,eth-labels: OKX 21 (ethereum)
+ethereum,0xbe0eb53f46cd790cd13851d5eff43d12404d33e8,Binance,eth-labels: Binance 7 (ethereum)
+ethereum,0xbf94f0ac752c739f623c463b5210a7fb2cbb420b,OKX,eth-labels: OKX 24 (ethereum)
+ethereum,0xbfc39b6f805a9e40e77291aff27aee3c96915bdd,Poloniex,eth-labels: Poloniex 5 (ethereum)
+ethereum,0xc0140cfc3988101a7c1ac769af92fb1ffca80f58,Bithumb,eth-labels: Bithumb 19 (ethereum)
+ethereum,0xc070a61d043189d99bbf4baa58226bf0991c7b11,Coinbase,eth-labels: Coinbase 18 (ethereum)
+ethereum,0xc1da8f69e4881efe341600620268934ef01a3e63,Bithumb,eth-labels: Bithumb 5 (ethereum)
+ethereum,0xc5451b523d5fffe1351337a221688a62806ad91a,OKX,eth-labels: OKX 10 (ethereum)
+ethereum,0xc56fefd1028b0534bfadcdb580d3519b5586246e,Bitfinex,eth-labels: Bitfinex 11 (ethereum)
+ethereum,0xc5b611f502a0dcf6c3188fd494061ae29b2baa4f,Bitstamp,eth-labels: Bitstamp 6 (ethereum)
+ethereum,0xc6bed363b30df7f35b601a5547fe56cd31ec63da,Kraken,eth-labels: Kraken 8 (ethereum)
+ethereum,0xc708a1c712ba26dc618f972ad7a187f76c8596fd,OKX,eth-labels: OKX 13 (ethereum)
+ethereum,0xc7bf35c9a3bdd1b1c19a6963de669cb45191a019,Coinbase,eth-labels: Coinbase 26 (ethereum)
+ethereum,0xc8373edfad6d5c5f600b6b2507f78431c5271ff5,Coinbase,eth-labels: Coinbase 19 (ethereum)
+ethereum,0xc83f43f27c210cb2a949bc2b3e4643be61c08c02,Bithumb,eth-labels: Bithumb 27 (ethereum)
+ethereum,0xc882b111a75c0c657fc507c04fbfcd2cc984f071,Gate,eth-labels: Gate.io 5 (ethereum)
+ethereum,0xc9aaa6ca0e05b87d53a3e51edbc44b406eeaf299,Coinbase,eth-labels: Coinbase 37 (ethereum)
+ethereum,0xcad621da75a66c7a8f4ff86d30a2bf981bfc8fdd,KuCoin,eth-labels: KuCoin 10 (ethereum)
+ethereum,0xcb1ee1888b2045f4b79eb777243e76f5fefe2bc3,Upbit,eth-labels: Upbit 12 (ethereum)
+ethereum,0xcba38020cd7b6f51df6afaf507685add148f6ab6,OKX,eth-labels: OKX 8 (ethereum)
+ethereum,0xcc282e2004428939ee5149a9e7872f0b4d5d5ec7,Kraken,eth-labels: Kraken: Hot Wallet 3 (ethereum)
+ethereum,0xcd0267c7f1a8ad1b6e33b7fb801f8d935f6b557d,Kraken,eth-labels: Kraken 62 (ethereum)
+ethereum,0xcdc8488e63a403bfd580222ea0f3719477bfea9c,Kraken,eth-labels: Kraken 56 (ethereum)
+ethereum,0xce27fc71139d02f9a3d5cc1356add185750660ac,Kraken,eth-labels: Kraken 15 (ethereum)
+ethereum,0xcf40d0d2b44f2b66e07cace1372ca42b73cf21a3,Kraken,eth-labels: Kraken 76 (ethereum)
+ethereum,0xcfee6efec3471874022e205f4894733c42cbbf64,Deribit,eth-labels: Deribit 7 (ethereum)
+ethereum,0xcffad3200574698b78f32232aa9d63eabd290703,Crypto.com,eth-labels: Crypto.com 5 (ethereum)
+ethereum,0xd03be958e6b8da2d28ac8231a2291d6e4f0a7ea7,Korbit,eth-labels: Korbit 4 (ethereum)
+ethereum,0xd0ad6ed2b2920a5744a064af3d585ee54f528b2f,Kraken,eth-labels: Kraken 63 (ethereum)
+ethereum,0xd24400ae8bfebb18ca49be86258a3c749cf46853,Gemini,eth-labels: Gemini (ethereum)
+ethereum,0xd273bd546b11bd60214a2f9d71f22a088aafe31b,Bithumb,eth-labels: Bithumb 11 (ethereum)
+ethereum,0xd2dd7b597fd2435b6db61ddf48544fd931e6869f,Kraken,eth-labels: Kraken 246 (ethereum)
+ethereum,0xd34ea7278e6bd48defe656bbe263aef11101469c,Coinbase,eth-labels: Coinbase 34 (ethereum)
+ethereum,0xd6216fc19db775df9774a6e33526131da7d19a2c,KuCoin,eth-labels: KuCoin 6 (ethereum)
+ethereum,0xd688aea8f7d450909ade10c47faa95707b0682d9,Coinbase,eth-labels: Coinbase 7 (ethereum)
+ethereum,0xd69b0089d9ca950640f5dc9931a41a5965f00303,Gemini,eth-labels: Gemini 7 (ethereum)
+ethereum,0xd6e0f7da4480b3ad7a2c8b31bc5a19325355ca15,Korbit,eth-labels: Korbit 5 (ethereum)
+ethereum,0xd7efcbb86efdd9e8de014dafa5944aae36e817e4,OKX,eth-labels: OKX 27 (ethereum)
+ethereum,0xd839c179a4606f46abd7a757f7bb77d7593ae249,Coinbase,eth-labels: Coinbase 40 (ethereum)
+ethereum,0xd89350284c7732163765b23338f2ff27449e0bf5,KuCoin,eth-labels: KuCoin 13 (ethereum)
+ethereum,0xda9dfa130df4de4673b89022ee50ff26f6ea73cf,Kraken,eth-labels: Kraken 13 (ethereum)
+ethereum,0xdcd0272462140d0a3ced6c4bf970c7641f08cd2c,Bitfinex,eth-labels: Bitfinex 4 (ethereum)
+ethereum,0xddfabcdc4d8ffc6d5beaf154f18b778f892a0740,Coinbase,eth-labels: Coinbase 23 (ethereum)
+ethereum,0xdf21fa922215b1a56f5a6d6294e6e36c85a0acfb,Poloniex,eth-labels: Poloniex 6 (ethereum)
+ethereum,0xdf90c9b995a3b10a5b8570a47101e6c6a29eb945,MEXC,eth-labels: MEXC 7 (ethereum)
+ethereum,0xdfe4b89cf009bffa33d9bca1f19694fc2d4d943d,Bitget,eth-labels: Bitget 12 (ethereum)
+ethereum,0xe0ed2f99b647c5dd21f946e5211e6241c44b045d,Bithumb,eth-labels: Bithumb 14 (ethereum)
+ethereum,0xe0f8c36af7ce0c4076e6db0ed5452eddadc2c61d,Bithumb,eth-labels: Bithumb 15 (ethereum)
+ethereum,0xe1a0ddeb9b5b55e489977b438764e60e314e917c,Coinbase,eth-labels: Coinbase 16 (ethereum)
+ethereum,0xe2b406ec9227143a8830229eeb3eb6e24b5c60be,Bitget,eth-labels: Bitget: Hot Wallet 2 (ethereum)
+ethereum,0xe52ecf8d97e290dad5963296c5d1f81472f2ec48,Kraken,eth-labels: Kraken 30 (ethereum)
+ethereum,0xe59cd29be3be4461d79c0881d238cbe87d64595a,KuCoin,eth-labels: Kucoin 7 (ethereum)
+ethereum,0xe5d7ccc5fc3b3216c4dff3a59442f1d83038468c,Korbit,eth-labels: Korbit 6 (ethereum)
+ethereum,0xe68ee8a12c611fd043fb05d65e1548dc1383f2b9,Coinbase,eth-labels: Coinbase 35 (ethereum)
+ethereum,0xe6a421f24d330967a3af2f4cdb5c34067e7e4d75,Bitget,eth-labels: Bitget: Hot Wallet 1 (ethereum)
+ethereum,0xe7178ad747f2c12ab1f8332e61cf6e756815d5c6,Kraken,eth-labels: Kraken 47 (ethereum)
+ethereum,0xe79eef9b9388a4ff70ed7ec5bccd5b928ebb8bd1,BitMart,eth-labels: BitMart (ethereum)
+ethereum,0xe80623a9d41f2f05780d9cd9cea0f797fd53062a,Bitget,eth-labels: Bitget 1 (ethereum)
+ethereum,0xe83a48cae4d7120e8ba1c2e0409568ffba532e87,Korbit,eth-labels: Korbit 7 (ethereum)
+ethereum,0xe850b7c87f66371035e184c72d4b99e7b2ca4865,Kraken,eth-labels: Kraken 51 (ethereum)
+ethereum,0xe853c56864a2ebe4576a807d26fdc4a0ada51919,Kraken,eth-labels: Kraken 3 (ethereum)
+ethereum,0xe9172daf64b05b26eb18f07ac8d6d723acb48f99,OKX,eth-labels: OKX 19 (ethereum)
+ethereum,0xe92d1a43df510f82c66382592a047d288f85226f,Bitfinex,eth-labels: Bitfinex 19 (ethereum)
+ethereum,0xe9f7ecae3a53d2a67105292894676b00d1fab785,Kraken,eth-labels: Kraken: Hot Wallet (ethereum)
+ethereum,0xeb2629a2734e272bcc07bda959863f316f4bd4cf,Coinbase,eth-labels: Coinbase 54 (ethereum)
+ethereum,0xec30d02f10353f8efc9601371f56e808751f396f,KuCoin,eth-labels: KuCoin 11 (ethereum)
+ethereum,0xed48dc0628789c2956b1e41726d062a86ec45bff,Bithumb,eth-labels: Bithumb 9 (ethereum)
+ethereum,0xee136c0389733849dd710ac7104e92c6bf497574,MEXC,eth-labels: MEXC 4 (ethereum)
+ethereum,0xf016e1d45ef23bdd414e7a2e4d46e1b34577b508,MEXC,eth-labels: MEXC 27 (ethereum)
+ethereum,0xf0bc8fddb1f358cef470d63f96ae65b1d7914953,Korbit,eth-labels: Korbit 8 (ethereum)
+ethereum,0xf16e9b0d03470827a95cdfd0cb8a8a3b46969b91,KuCoin,eth-labels: KuCoin 9 (ethereum)
+ethereum,0xf1f7648f81f5219c36d75d24d33811f16b426dbe,Kraken,eth-labels: Kraken 50 (ethereum)
+ethereum,0xf30ba13e4b04ce5dc4d254ae5fa95477800f0eb0,Kraken,eth-labels: Kraken: Hot Wallet 2 (ethereum)
+ethereum,0xf3b0073e3a7f747c7a38b36b805247b222c302a3,Crypto.com,eth-labels: Crypto.com 6 (ethereum)
+ethereum,0xf491d040110384dbcf7f241ffe2a546513fd873d,Coinbase,eth-labels: Coinbase 25 (ethereum)
+ethereum,0xf59869753f41db720127ceb8dbb8afaf89030de4,OKX,eth-labels: OKX 15 (ethereum)
+ethereum,0xf6230e7e98d2bbebf96d14888020e9c3e8c27d69,Korbit,eth-labels: Korbit 10 (ethereum)
+ethereum,0xf646d9b7d20babe204a89235774248ba18086dae,Bitget,eth-labels: Bitget: Hot Wallet 3 (ethereum)
+ethereum,0xf6a1875f0b6d16d2979add2447bfc18444851d38,Bithumb,eth-labels: Bithumb 20 (ethereum)
+ethereum,0xf7858da8a6617f7c6d0ff2bcafdb6d2eedf64840,OKX,eth-labels: OKX 25 (ethereum)
+ethereum,0xf97deb1c0bb4536ff16617d29e5f4b340fe231df,KuCoin,eth-labels: KuCoin 21 (ethereum)
+ethereum,0xfa52274dd61e1643d2205169732f29114bc240b3,Kraken,eth-labels: Kraken 5 (ethereum)
+ethereum,0xfcaf9c57c26566f96d23f585950bb1c66e138890,Kraken,eth-labels: Kraken 66 (ethereum)
+ethereum,0xfedac45de308e24b8282193c512f029250943d8a,Kraken,eth-labels: Kraken 19 (ethereum)
+ethereum,0xffb3118124cdaebd9095fa9a479895042018cac2,MEXC,eth-labels: MEXC 9 (ethereum)

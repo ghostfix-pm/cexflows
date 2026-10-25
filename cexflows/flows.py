@@ -13,6 +13,7 @@ from typing import Callable, Dict, Iterable, List, Optional
 from . import etherscan
 from .cache import Cache
 from .labels import hot_wallets
+from .prices import daily_prices
 
 
 def token_decimals(chain: str, token: str) -> int:
@@ -76,4 +77,22 @@ def daily_inflows(chain: str, token: str, days: int = 365, end_ts: Optional[floa
         for t in cache.transfers(chain, token, wallet, ts_from, ts_to + 1):
             t["wallet"] = wallet
             rows.append(t)
-    return aggregate_daily(rows, wallets, decimals, start_day.isoformat(), end_day.isoformat())
+    daily = aggregate_daily(rows, wallets, decimals, start_day.isoformat(), end_day.isoformat())
+    add_usd(daily, chain, token, ts_from, ts_to, cache, progress)
+    return daily
+
+
+def add_usd(daily: List[dict], chain: str, token: str, ts_from: int, ts_to: int,
+            cache: Cache, progress: Optional[Callable[[str], None]] = None) -> None:
+    """Set usd_to_cex (and usd_price) on each day from CoinGecko's daily price; None where no
+    price is available, so a missing price never reads as $0."""
+    try:
+        prices = daily_prices(chain, token, ts_from, ts_to, cache)
+    except Exception as e:
+        if progress:
+            progress(f"no USD prices: {e}")
+        prices = {}
+    for row in daily:
+        price = prices.get(row["day"])
+        row["usd_price"] = price
+        row["usd_to_cex"] = row["tokens_to_cex"] * price if price is not None else None

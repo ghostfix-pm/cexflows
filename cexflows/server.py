@@ -39,13 +39,34 @@ def _cex_inflows(params: dict) -> List[dict]:
         raise ValueError("cex_inflows needs token_address (0x + 40 hex) and chain")
     days = int(float(params.get("days") or 365))
     rows = flows.daily_inflows(chain, token, days=days, progress=lambda m: print(m, file=sys.stderr))
-    return [{"day": r["day"], "tokens_to_cex": r["tokens_to_cex"], "usd_to_cex": None,
+    return [{"day": r["day"], "tokens_to_cex": r["tokens_to_cex"], "usd_to_cex": r.get("usd_to_cex"),
              "n_transfers": r["n_transfers"], "by_exchange": json.dumps(r["by_exchange"], sort_keys=True)}
             for r in rows]
 
 
+def _cohort_flows(params: dict) -> List[dict]:
+    from . import cohorts
+
+    token = str(params.get("token_address") or "").strip()
+    chain = str(params.get("chain") or "").strip()
+    raw = params.get("cliff_dates") or ""
+    dates = [d.strip() for d in (raw if isinstance(raw, list) else str(raw).split(",")) if d.strip()]
+    if not re.fullmatch(r"0x[0-9a-fA-F]{40}", token) or not chain or len(dates) < 2:
+        raise ValueError("cohort_flows needs token_address, chain and at least two cliff_dates (YYYY-MM-DD, comma-separated)")
+    res = cohorts.cohort_flows(chain, token, dates,
+                               release_days=int(float(params.get("release_days") or 2)),
+                               follow_days=int(float(params.get("follow_days") or 30)),
+                               progress=lambda m: print(m, file=sys.stderr))
+    return res["rows"]
+
+
+COHORT_COLUMNS = ["cliff_date", "released_tokens", "released_usd", "to_exchange_tokens", "to_deposit_tokens",
+                  "to_contract_tokens", "to_wallet_tokens", "to_internal_tokens", "to_unclassified_tokens",
+                  "retained_tokens", "exchange_share", "contract_share"]
+
 QUERIES: Dict[str, tuple] = {
     "cex_inflows": (1, _cex_inflows, ["day", "tokens_to_cex", "usd_to_cex", "n_transfers", "by_exchange"]),
+    "cohort_flows": (2, _cohort_flows, COHORT_COLUMNS),
 }
 
 

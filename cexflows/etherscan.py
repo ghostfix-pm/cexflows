@@ -98,6 +98,11 @@ def call(chain: str, retries: int = 4, **params) -> object:
     raise EtherscanError("retries exhausted")
 
 
+def is_contract(chain: str, address: str) -> bool:
+    code = call(chain, module="proxy", action="eth_getCode", address=address, tag="latest")
+    return bool(code) and code not in ("0x", "0x0")
+
+
 def latest_block(chain: str) -> int:
     return int(call(chain, module="proxy", action="eth_blockNumber"), 16)
 
@@ -106,17 +111,33 @@ def block_at(chain: str, ts: int, closest: str = "before") -> int:
     return int(call(chain, module="block", action="getblocknobytime", timestamp=int(ts), closest=closest))
 
 
-def inbound_transfers(chain: str, token: str, wallet: str, from_block: int, to_block: int) -> Iterator[dict]:
-    """Every Transfer of `token` into `wallet` in [from_block, to_block], oldest first.
+def _topic(address: str) -> str:
+    return "0x" + address.lower()[2:].rjust(64, "0")
 
-    Yields {block, ts, tx, log_index, from, value} with `value` in raw token units.
+
+def inbound_transfers(chain: str, token: str, wallet: str, from_block: int, to_block: int) -> Iterator[dict]:
+    """Every Transfer of `token` into `wallet` in [from_block, to_block], oldest first."""
+    return transfers(chain, token, from_block, to_block, recipient=wallet)
+
+
+def transfers(chain: str, token: str, from_block: int, to_block: int,
+              sender: Optional[str] = None, recipient: Optional[str] = None) -> Iterator[dict]:
+    """Transfers of `token` in [from_block, to_block], oldest first, optionally only those from
+    `sender` and/or to `recipient`.
+
+    Yields {block, ts, tx, log_index, from, to, value} with `value` in raw token units.
     """
-    to_topic = "0x" + wallet.lower()[2:].rjust(64, "0")
+    filters = {"topic0": TRANSFER_TOPIC}
+    if sender:
+        filters.update(topic1=_topic(sender), topic0_1_opr="and")
+    if recipient:
+        filters.update(topic2=_topic(recipient), topic0_2_opr="and")
+    if sender and recipient:
+        filters["topic1_2_opr"] = "and"
     start = from_block
     seen = set()
     while start <= to_block:
-        logs: List[dict] = call(chain, module="logs", action="getLogs", address=token,
-                                topic0=TRANSFER_TOPIC, topic2=to_topic, topic0_2_opr="and",
+        logs: List[dict] = call(chain, module="logs", action="getLogs", address=token, **filters,
                                 fromBlock=start, toBlock=to_block, page=1, offset=PAGE) or []
         if not logs:
             return
@@ -134,6 +155,7 @@ def inbound_transfers(chain: str, token: str, wallet: str, from_block: int, to_b
                 "tx": lg["transactionHash"],
                 "log_index": key[1],
                 "from": "0x" + lg["topics"][1][-40:],
+                "to": "0x" + lg["topics"][2][-40:],
                 "value": int(lg["data"], 16) if lg["data"] not in ("0x", "") else 0,
             }
         if len(logs) < PAGE:
@@ -141,6 +163,6 @@ def inbound_transfers(chain: str, token: str, wallet: str, from_block: int, to_b
         # A full page may stop mid-block, so the next call re-reads the last block and `seen`
         # (that block's keys only) drops the repeats.
         if last_block == start:
-            raise EtherscanError(f"more than {PAGE} transfers into {wallet} in block {start}")
+            raise EtherscanError(f"more than {PAGE} matching transfers in block {start}")
         seen = page_last_block
         start = last_block

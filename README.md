@@ -36,7 +36,34 @@ The server runs no SQL. Each supported query is implemented natively under a loc
 
 | id | name | parameters | columns |
 | - | - | - | - |
-| 1 | `cex_inflows` | `token_address`, `chain` (`ethereum`, `arbitrum`), `days` (default 365) | `day`, `tokens_to_cex`, `usd_to_cex` (null for now), `n_transfers`, `by_exchange` (JSON) |
+| 1 | `cex_inflows` | `token_address`, `chain` (`ethereum`, `arbitrum`), `days` (default 365) | `day`, `tokens_to_cex`, `usd_to_cex`, `n_transfers`, `by_exchange` (JSON) |
+| 2 | `cohort_flows` | `token_address`, `chain`, `cliff_dates` (comma-separated), `release_days` (2), `follow_days` (30) | one row per cliff plus an `all` row: `released_tokens`, `released_usd`, `to_exchange_tokens`, `to_deposit_tokens`, `to_contract_tokens`, `to_wallet_tokens`, `to_internal_tokens`, `to_unclassified_tokens`, `retained_tokens`, `exchange_share`, `contract_share` |
+
+`usd_to_cex` is each day's token amount at CoinGecko's daily price for that date, null where
+CoinGecko has no price.
+
+### Cohort tracking
+
+`cohort_flows` follows the wallets that receive tokens at unlock cliffs. For each cliff it reads
+every transfer of the token in a short window from the cliff date, and in a control window of the
+same length ten days earlier. A vesting payout is a sender and recipient pair that recurs in the
+cliff windows of at least half the cliffs, never in a control window, never the other way round,
+and in steady amounts (at least two within 10% of their median; a first claim carrying accrued
+periods is allowed): a vesting contract or distributor paying its beneficiary on schedule.
+`released_tokens` counts only the first hop out of vesting, so a distributor passing tokens to
+beneficiaries isn't counted twice.
+
+For the following 30 days (stopping at the next cliff), everything the beneficiaries send is
+classified: a labelled hot wallet (`exchange`), a wallet that passes the tokens on to one within 7
+days (`deposit`, an exchange deposit address), any contract (`contract`: DEX pools, multisigs,
+staking, bridges), another beneficiary (`internal`), or any other wallet. A beneficiary's outflows
+count only up to what vesting has paid it so far, so a wallet that also trades its own holdings
+can't inflate the shares. `exchange_share` is exchange plus deposit over released, the cohort's
+measured sell-through to exchanges. DEX selling sits inside `contract`, so it is reported apart
+rather than counted as selling. Beneficiaries who claim after the release window, or whose
+contracts stream continuously rather than paying on the cliff, are missed, so `released_tokens`
+is a sample of the scheduled unlock. Also runnable directly:
+`python -m cexflows.cohorts --chain arbitrum --token 0x... --cliffs 2026-04-15,2026-05-16,...`.
 
 To make a real Dune query id work against both, map it: `CEXFLOWS_QUERY_MAP=4242424=cex_inflows`.
 A query that isn't implemented gets a 404 that lists what is, never empty rows.
@@ -49,6 +76,7 @@ Endpoints: `POST /api/v1/query/{id}/execute`, `GET /api/v1/execution/{id}/status
 | variable | meaning |
 | - | - |
 | `ETHERSCAN_API_KEY` | Etherscan V2 key; else `~/.config/cexflows/etherscan_key` |
+| `COINGECKO_PRO_API_KEY` / `COINGECKO_API_KEY` | CoinGecko key for USD prices (pro or demo); else `~/.config/cexflows/coingecko_pro_key` / `coingecko_key`, else the keyless public API |
 | `CEXFLOWS_API_KEY` | this server's key; else `~/.cexflows-key`, generated on first run |
 | `CEXFLOWS_PORT` | port, default 8766 |
 | `CEXFLOWS_HOSTS` | extra allowed `Host` values, comma-separated (loopback is always allowed) |
@@ -73,7 +101,6 @@ figure.
 
 - EVM chains on Etherscan only, and only Ethereum and Arbitrum so far.
 - Deposits are counted when swept, typically hours late; aggregate to weeks for timing work.
-- No USD values yet.
 - Not affiliated with Dune. It implements the shape of part of Dune's public API so the same
   client code can use either; it doesn't reproduce Dune's data.
 

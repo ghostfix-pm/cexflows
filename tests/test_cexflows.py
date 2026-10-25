@@ -150,3 +150,76 @@ def test_inbound_transfers_refuses_a_block_with_more_than_a_page(monkeypatch):
         assert False, "should refuse rather than loop"
     except etherscan.EtherscanError as e:
         assert "block 5" in str(e)
+
+
+def test_vesting_pairs_recur_on_cliffs_and_never_in_controls():
+    from cexflows.cohorts import find_vesting_pairs
+
+    vest, ben, trader, pool, hot = ("0x" + c * 40 for c in "12345")
+    def t(f, to, v=10):
+        return {"from": f, "to": to, "value": v}
+    cliffs = [[t(vest, ben, 100), t(trader, pool)],
+              [t(vest, ben, 100), t(trader, pool), t(hot, ben)],
+              [t(vest, ben, 120)]]
+    controls = [[t(trader, pool)], [], []]
+    pairs = find_vesting_pairs(cliffs, controls, {hot}, min_cliffs=2)
+    assert pairs == {(vest, ben): {0: 100, 1: 100, 2: 120}}
+
+
+def test_vesting_pairs_need_steady_one_way_payouts():
+    from cexflows.cohorts import find_vesting_pairs
+
+    vest, ben, bot, mm, a, b = ("0x" + c * 40 for c in "123456")
+    def t(f, to, v):
+        return {"from": f, "to": to, "value": v}
+    cliffs = [[t(vest, ben, 900), t(bot, mm, 31), t(a, b, 50), t(b, a, 50)],
+              [t(vest, ben, 100), t(bot, mm, 71), t(a, b, 50), t(b, a, 50)],
+              [t(vest, ben, 100), t(bot, mm, 172)]]
+    # The first claim carries accrued periods; the bot's amounts never repeat; a and b trade both ways.
+    assert find_vesting_pairs(cliffs, [[], [], []], set(), min_cliffs=2) == {(vest, ben): {0: 900, 1: 100, 2: 100}}
+
+
+def test_cohort_outflows_are_capped_at_vesting_payouts(tmp_path, monkeypatch):
+    from cexflows import cohorts
+    from cexflows.cache import Cache
+
+    vest, ben, hot, dex = "0x" + "1" * 40, "0x" + "2" * 40, "0x" + "3" * 40, "0x" + "4" * 40
+    starts = [cohorts._day_ts(d) for d in ("2026-01-15", "2026-02-15")]
+    D = cohorts.DAY
+
+    def logs(ts_from, ts_to):
+        rows = []
+        for i, s in enumerate(starts):
+            if ts_from <= s + 3600 < ts_to:
+                rows.append({"block": s + 3600, "ts": s + 3600, "tx": f"0xv{i}", "log_index": 0,
+                             "from": vest, "to": ben, "value": 100})
+        return rows
+
+    monkeypatch.setattr(cohorts, "window_transfers", lambda c, tk, a, z, cache: logs(a, z))
+    monkeypatch.setattr(cohorts, "hot_wallets", lambda chain, path=None: {hot: "Ex"})
+    monkeypatch.setattr(cohorts, "token_decimals", lambda c, tk: 0)
+    monkeypatch.setattr(cohorts, "daily_prices", lambda *a: {"2026-01-15": 2.0, "2026-02-15": 3.0})
+    monkeypatch.setattr(cohorts.etherscan, "block_at", lambda c, ts, closest="before": ts)
+    monkeypatch.setattr(cohorts.etherscan, "is_contract", lambda c, a: a == dex)
+    # The beneficiary also trades its own holdings: 1,000 to the exchange after the first cliff.
+    out = [(starts[0] + 2 * D, hot, 60), (starts[0] + 3 * D, hot, 1000), (starts[1] + 2 * D, dex, 30)]
+    monkeypatch.setattr(cohorts.etherscan, "transfers",
+                        lambda c, tk, a, z, sender=None, recipient=None:
+                        [{"block": ts, "ts": ts, "tx": f"0xo{n}", "log_index": 0, "from": sender, "to": to, "value": v}
+                         for n, (ts, to, v) in enumerate(out) if a <= ts <= z])
+    res = cohorts.cohort_flows("arbitrum", "0x" + "9" * 40, ["2026-01-15", "2026-02-15"],
+                               cache=Cache(str(tmp_path / "c.sqlite")))
+    jan, feb, total = res["rows"]
+    assert (jan["released_tokens"], jan["to_exchange_tokens"], jan["exchange_share"]) == (100, 100, 1.0)
+    assert (feb["to_contract_tokens"], feb["retained_tokens"]) == (30, 70)
+    assert total["released_usd"] == 100 * 2.0 + 100 * 3.0
+
+
+def test_classify_destinations():
+    from cexflows.cohorts import classify
+
+    hot, internal = {"0xhot"}, {"0xben2"}
+    contracts, forwarders = {"0xpool"}, {"0xdep"}
+    kind = lambda d: classify(d, hot, internal, lambda a: a in contracts, lambda a: a in forwarders)
+    assert [kind(d) for d in ("0xhot", "0xben2", "0xpool", "0xdep", "0xfriend")] == \
+        ["exchange", "internal", "contract", "deposit", "wallet"]
