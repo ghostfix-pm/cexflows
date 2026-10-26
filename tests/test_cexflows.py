@@ -348,3 +348,32 @@ def test_peer_priors_come_from_wallets_of_the_same_size():
     priors = peer_priors({"0xw": whale[:12], "0xv": whale[12:], "0xs": small}, set(), supply)
     assert priors[0.001]["sell_fraction"] == 0.1 and priors[0.001]["take_profit_multiple"] == 2.0
     assert priors[0.0]["sell_fraction"] == 1.0
+
+
+def test_backtest_score_compares_levels_with_realized_sales():
+    from cexflows.backtest import score
+
+    modelled = [
+        {"address": "a", "kind": "price", "balance": 100, "breakeven_price": 1.2, "breakeven_tokens": 10,
+         "takeprofit_price": 2.0, "takeprofit_tokens": 9},
+        {"address": "b", "kind": "price", "balance": 100, "breakeven_price": None, "breakeven_tokens": 0,
+         "takeprofit_price": 4.0, "takeprofit_tokens": 20},            # never reached
+        {"address": "c", "kind": "price", "balance": 50, "breakeven_price": None, "breakeven_tokens": 0,
+         "takeprofit_price": 1.5, "takeprofit_tokens": 5},             # predicted, didn't sell
+        {"address": "t", "kind": "time", "balance": 500, "breakeven_price": None, "breakeven_tokens": 0,
+         "takeprofit_price": None, "takeprofit_tokens": 0},
+    ]
+    realized = {"a": [{"tokens": 12, "price": 1.3}, {"tokens": 8, "price": 2.1}],
+                "b": [{"tokens": 30, "price": 2.5}], "t": [{"tokens": 100, "price": 2.0}]}
+    r = score(modelled, realized, p0=1.0, peak_price=3.0)
+    assert r["volume"]["predicted_tokens"] == 10 + 9 + 5 and r["volume"]["realized_tokens"] == 12 + 8 + 30
+    realized["c"] = [{"tokens": 80, "price": 1.6}]                     # sold more than it held
+    assert score(modelled, realized, p0=1.0, peak_price=3.0)["volume"]["realized_tokens_capped"] == 20 + 30 + 50
+    del realized["c"]
+    assert r["who"] == {"predicted_sellers": 2, "realized_sellers": 2, "both": 1, "precision": 0.5,
+                        "recall": 0.5, "base_rate": 2 / 3}
+    assert r["where"]["wallets"] == 2 and r["where"]["first_sale_at_or_past_level"] == 1   # a at 1.3 >= 1.2; b at 2.5 < 4
+    assert r["outside_model"]["time"]["sold_tokens"] == 100
+    bands = {c["band"]: c for c in r["curve"]}
+    assert bands["1.25-1.5x"]["realized_tokens"] == 12 and bands["0-1.25x"]["predicted_tokens"] == 10
+    assert bands["2-3x"]["realized_tokens"] == 38 and "3-5x" not in bands

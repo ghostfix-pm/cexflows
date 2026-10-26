@@ -320,15 +320,12 @@ def ensure_history(chain: str, token: str, cache: Cache, progress: Callable[[str
         b = z + 1
 
 
-def holder_positions(chain: str, token: str, top_n: int = 100, as_of: Optional[str] = None,
-                     cache: Optional[Cache] = None, labels_path: Optional[str] = None,
-                     progress: Callable[[str], None] = lambda m: None) -> dict:
-    """The top N modelled holders with balance, cost basis and sale history, from the token's
-    full transfer history (fetched into the cache first if missing)."""
-    chain, token = chain.lower(), token.lower()
+def market_view(chain: str, token: str, end_ts: int, cache: Optional[Cache] = None,
+                labels_path: Optional[str] = None, progress: Callable[[str], None] = lambda m: None) -> dict:
+    """The token's transfers before `end_ts`, the market wallets they reveal (exchanges, services,
+    pools, deposit addresses, project wallets), daily prices, and the lot book and sales replayed
+    from the mint. The history is fetched into the cache first if missing."""
     cache = cache or Cache()
-    end_ts = (int(datetime.strptime(as_of, "%Y-%m-%d").replace(tzinfo=timezone.utc).timestamp()) + 86400
-              if as_of else int(datetime.now(timezone.utc).timestamp()) + 1)
     ensure_history(chain, token, cache, progress)
     transfers = cache.token_logs(chain, token, 0, end_ts)
     if not transfers or transfers[0]["from"] != ZERO:
@@ -354,6 +351,23 @@ def holder_positions(chain: str, token: str, top_n: int = 100, as_of: Optional[s
     project = project_wallets(transfers, hot | pools, contract)
     progress(f"{len(project)} project wallets")
     book, sales = build_positions(transfers, hot, pools, deposits, price_on)
+    return {"transfers": transfers, "scale": scale, "hot": hot, "pools": pools, "service": service,
+            "deposits": deposits, "project": project, "prices": prices, "day": day, "contract": contract,
+            "book": book, "sales": sales}
+
+
+def holder_positions(chain: str, token: str, top_n: int = 100, as_of: Optional[str] = None,
+                     cache: Optional[Cache] = None, labels_path: Optional[str] = None,
+                     progress: Callable[[str], None] = lambda m: None) -> dict:
+    """The top N modelled holders with balance, cost basis and sale history, from the token's
+    full transfer history (fetched into the cache first if missing)."""
+    chain, token = chain.lower(), token.lower()
+    end_ts = (int(datetime.strptime(as_of, "%Y-%m-%d").replace(tzinfo=timezone.utc).timestamp()) + 86400
+              if as_of else int(datetime.now(timezone.utc).timestamp()) + 1)
+    v = market_view(chain, token, end_ts, cache, labels_path, progress)
+    transfers, scale, hot, pools, service, deposits, project, prices, day, contract, book, sales = (
+        v[k] for k in ("transfers", "scale", "hot", "pools", "service", "deposits", "project", "prices", "day",
+                       "contract", "book", "sales"))
 
     price_now = prices.get(day(end_ts - 1))
     raw: Dict[str, int] = defaultdict(int)

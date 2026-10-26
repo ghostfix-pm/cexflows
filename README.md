@@ -125,6 +125,30 @@ A query that isn't implemented gets a 404 that lists what is, never empty rows.
 Endpoints: `POST /api/v1/query/{id}/execute`, `GET /api/v1/execution/{id}/status`,
 `GET /api/v1/execution/{id}/results`, `GET /api/v1/query/{id}/results`. Executions live in memory.
 
+## Backtesting the levels
+
+`python -m cexflows.backtest --token 0x... --start <trough> --peak <peak>` builds positions and
+levels as of the rally's start, from data up to that day only, then reads the same wallets'
+sales over the rally and 14 days after the peak. It reports the volume they sold against what
+their levels predicted (raw, and capped at each wallet's starting balance), the precision and
+recall of "this wallet sells", each seller's first sale price against its lowest level (scored
+against a constant-multiple baseline), tokens by price band, and what the unpriced kinds sold.
+
+First run, four rallies (top 100 holders, capped volume over predicted):
+
+| token | rally | predicted share of balance sold | realized | realized / predicted |
+| - | - | - | - | - |
+| DEXE | 5.9x, Feb-Apr 2026 | 2% | 74% | 32x |
+| LSK | 11.2x, Aug-Sep 2026 | 31% | 65% | 2.1x |
+| APEX | 10.7x, Sep-Oct 2025 | 23% | 17% | 0.74x |
+| BIO | 5.3x, Jun-Aug 2025 | 16% | 85% | 5.4x |
+
+The levels under-predict selling on three of four, because each holder gets at most two slices
+(break-even, take-profit) while on a real rally large holders keep selling as the price climbs.
+Recall of sellers is high (88-96%) but precision only matches the base rate, since a 5-11x move
+crosses nearly every level. Per-wallet sale prices beat the constant baseline on DEXE, tie on
+BIO and lose on LSK and APEX.
+
 ## Configuration
 
 | variable | meaning |
