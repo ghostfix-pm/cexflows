@@ -86,9 +86,19 @@ def call(chain: str, retries: int = 4, **params) -> object:
             time.sleep(2 * (attempt + 1))
             continue
         result = body.get("result")
-        if body.get("status") == "1" or params.get("module") == "proxy":
+        if params.get("module") == "proxy":
+            # JSON-RPC answers carry "jsonrpc". Etherscan's own errors, a rate limit included,
+            # come back in the status/message/result shape with the error text as the result.
+            err = body.get("error")
+            if "jsonrpc" in body and not err:
+                return result
+            if isinstance(err, dict):   # a JSON-RPC error such as a revert: retrying won't help
+                raise EtherscanError(f"proxy/{params.get('action')}: {str(err.get('message'))[:200]}")
+            text = str(result or body.get("message") or "")
+        elif body.get("status") == "1":
             return result
-        text = str(result or body.get("message") or "")
+        else:
+            text = str(result or body.get("message") or "")
         if "no records found" in text.lower() or "no transactions found" in text.lower():
             return []
         if "rate limit" in text.lower() and attempt < retries - 1:

@@ -78,6 +78,22 @@ def _cliff_study(params: dict) -> List[dict]:
             for r in res["rows"]]
 
 
+def _holder_behaviour(params: dict) -> List[dict]:
+    from . import holders
+
+    token = str(params.get("token_address") or "").strip()
+    chain = str(params.get("chain") or "").strip()
+    if not re.fullmatch(r"0x[0-9a-fA-F]{40}", token) or not chain:
+        raise ValueError("holder_behaviour needs token_address (0x + 40 hex) and chain")
+    as_of = str(params.get("as_of") or "").strip() or None
+    res = holders.holder_positions(chain, token, top_n=int(float(params.get("top_n") or 100)), as_of=as_of,
+                                   progress=lambda m: print(m, file=sys.stderr))
+    return res["holders"]
+
+
+HOLDER_COLUMNS = ["address", "kind", "balance", "share_of_supply", "cost_basis_usd", "zero_cost_share", "origins",
+                  "oldest_lot", "n_sales", "sold_tokens", "median_sale_multiple", "last_sale"]
+
 STUDY_COLUMNS = ["window_days", "uplift", "uplift_se", "t_stat", "placebo_n", "placebo_median", "placebo_min",
                  "placebo_max", "placebo_share_above", "excess_tokens", "release_share", "release_share_low",
                  "release_share_high", "events", "r2"]
@@ -90,6 +106,7 @@ QUERIES: Dict[str, tuple] = {
     "cex_inflows": (1, _cex_inflows, ["day", "tokens_to_cex", "usd_to_cex", "n_transfers", "by_exchange"]),
     "cohort_flows": (2, _cohort_flows, COHORT_COLUMNS),
     "cliff_study": (3, _cliff_study, STUDY_COLUMNS),
+    "holder_behaviour": (4, _holder_behaviour, HOLDER_COLUMNS),
 }
 
 

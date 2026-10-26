@@ -41,6 +41,8 @@ The server runs no SQL. Each supported query is implemented natively under a loc
 
 | 3 | `cliff_study` | `token_address`, `chain`, `cliff_dates` (at least 3), `release_tokens` (per cliff, optional), `windows` (`3,7,10,15`), `other_events` (dates to control for) | one row per window: `uplift`, `uplift_se`, `t_stat`, `placebo_n`, `placebo_median`, `placebo_min`, `placebo_max`, `placebo_share_above`, `excess_tokens`, `release_share` with `release_share_low`/`_high` (95%), `events` (JSON), `r2` |
 
+| 4 | `holder_behaviour` | `token_address`, `chain`, `top_n` (100), `as_of` (date, for backtests) | one row per modelled holder: `address`, `kind` (`price`, `time`, `trader`, `unknown`), `balance`, `share_of_supply`, `cost_basis_usd`, `zero_cost_share`, `origins` (JSON), `oldest_lot`, `n_sales`, `sold_tokens`, `median_sale_multiple`, `last_sale` |
+
 `usd_to_cex` is each day's token amount at CoinGecko's daily price for that date, null where
 CoinGecko has no price.
 
@@ -81,6 +83,27 @@ each release that reached the labelled exchanges within W days, a floor on excha
 sell-through because label coverage is partial. Long windows leave few valid shifts when cliffs
 are monthly, so read the placebo at 10 days or less. Also runnable directly:
 `python -m cexflows.eventstudy --chain ethereum --token 0x... --cliffs ... --release 1.5e8`.
+
+### Holder positions
+
+`holder_behaviour` rebuilds every wallet's cost basis and sales from the token's full transfer
+history. A first run fetches that history, about an hour for a small cap (1.5M transfers); after
+that it comes from the cache. Tokens are followed as cost lots from the mint. A transfer between
+wallets moves lots with their cost. Out of an exchange wallet or pool is a purchase, priced at
+that day's price. Into one, or into an exchange deposit address, is a sale, recorded with its
+multiple of cost.
+
+Set aside, not modelled:
+- **Exchange wallets.** Labelled hot wallets, plus unlabelled services: anything with more than
+  2,000 counterparties.
+- **Pools.** From GeckoTerminal's free API.
+- **Deposit addresses.** Addresses that pass on nearly all they receive into those.
+- **Project wallets.** The mint recipient, plus contracts it funds that distribute on.
+- **Other contracts.** Safe multisigs are kept as holders.
+
+`kind` says how a holder is likely to sell. `price`: bought with a real cost. `time`: mostly
+zero-cost tokens from vesting or airdrops, released on a schedule. `trader`: 100 or more sales,
+a market maker or bot. Every price is CoinGecko's daily close for now.
 
 To make a real Dune query id work against both, map it: `CEXFLOWS_QUERY_MAP=4242424=cex_inflows`.
 A query that isn't implemented gets a 404 that lists what is, never empty rows.

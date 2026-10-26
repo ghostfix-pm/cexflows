@@ -267,3 +267,42 @@ def test_cliff_study_finds_a_planted_uplift(monkeypatch):
     row = res["rows"][0]
     assert 0.4 < row["uplift"] < 0.6
     assert row["placebo_share_above"] == 0.0
+
+
+def test_positions_follow_cost_from_mint_through_vesting_and_exchanges():
+    from cexflows.holders import ZERO, build_positions, deposit_addresses
+
+    vest, insider, cex, buyer, dep, pool = ("0x" + c * 40 for c in "123456")
+    day = 86400
+    price = {0: 1.0, 1: 2.0, 2: 3.0, 3: 6.0}
+    def t(ts_day, f, to, v):
+        return {"ts": ts_day * day, "from": f, "to": to, "value": v}
+    transfers = [
+        t(0, ZERO, vest, 1000),        # mint to the vesting contract
+        t(1, vest, insider, 100),      # insider vests zero-cost tokens
+        t(1, cex, buyer, 50),          # buyer withdraws from an exchange at $2
+        t(2, buyer, dep, 20),          # deposits 20 at $3: a sale at 1.5x cost
+        t(2, dep, cex, 20),            # the deposit address sweeps
+        t(3, insider, pool, 40),       # insider sells 40 into a pool at $6, cost 0
+    ]
+    deposits = deposit_addresses(transfers, {cex, pool})
+    assert deposits == {dep}
+    book, sales = build_positions(transfers, {cex}, {pool}, deposits, lambda ts: price[ts // day])
+    assert book.balance(insider) == 60 and all(l[1] == 0.0 and l[3] == "mint" for l in book.lots[insider])
+    assert book.balance(buyer) == 30 and book.lots[buyer][0][1] == 2.0
+    assert [(s["tokens"], s["price"], s["cost"], s["venue"]) for s in sales[buyer]] == [(20, 3.0, 2.0, "exchange")]
+    assert [(s["tokens"], s["cost"], s["venue"]) for s in sales[insider]] == [(40, 0.0, "pool")]
+
+
+def test_proxy_rate_limit_is_retried_not_returned(monkeypatch):
+    import io, json
+    from cexflows import etherscan
+
+    answers = [{"status": "0", "message": "NOTOK", "result": "Max calls per sec rate limit reached (5/sec)"},
+               {"jsonrpc": "2.0", "id": 1, "result": "0x"}]
+    monkeypatch.setattr(etherscan, "api_key", lambda: "k")
+    monkeypatch.setattr(etherscan.time, "sleep", lambda s: None)
+    monkeypatch.setattr(etherscan.urllib.request, "urlopen",
+                        lambda req, timeout=None: io.BytesIO(json.dumps(answers.pop(0)).encode()))
+    assert etherscan.is_contract("ethereum", "0x" + "1" * 40) is False
+    assert answers == []
