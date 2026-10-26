@@ -120,10 +120,12 @@ class Book:
 
     def __init__(self):
         self.lots: Dict[str, Deque[list]] = defaultdict(deque)
+        self.held: Dict[str, int] = defaultdict(int)
 
     def add(self, wallet: str, amount: int, cost: float, ts: int, origin: str) -> None:
         if amount > 0:
             self.lots[wallet].append([amount, cost, ts, origin])
+            self.held[wallet] += amount
 
     def take(self, wallet: str, amount: int) -> List[list]:
         """Remove `amount` oldest first; returns the pieces taken. A shortfall (a sender with
@@ -136,6 +138,7 @@ class Book:
             taken.append([part, lot[1], lot[2], lot[3]])
             lot[0] -= part
             amount -= part
+            self.held[wallet] -= part
             if lot[0] == 0:
                 q.popleft()
         if amount > 0:
@@ -143,7 +146,7 @@ class Book:
         return taken
 
     def balance(self, wallet: str) -> int:
-        return sum(l[0] for l in self.lots[wallet])
+        return self.held[wallet]
 
 
 def build_positions(transfers: List[dict], hot: Set[str], pools: Set[str], deposits: Set[str],
@@ -160,6 +163,7 @@ def build_positions(transfers: List[dict], hot: Set[str], pools: Set[str], depos
         if src == ZERO:
             book.add(dst, v, 0.0, ts, "mint")
             continue
+        held = book.balance(src)
         pieces = book.take(src, v)
         if src in market and dst not in market:
             # A purchase: whatever the market wallet held is replaced by what the buyer paid.
@@ -170,7 +174,7 @@ def build_positions(transfers: List[dict], hot: Set[str], pools: Set[str], depos
                 known = [p for p in pieces if p[1] is not None]
                 qty = sum(p[0] for p in known)
                 cost = sum(p[0] * p[1] for p in known) / qty if qty else None
-                sales[src].append({"ts": ts, "tokens": v, "price": price, "cost": cost,
+                sales[src].append({"ts": ts, "tokens": v, "held": held, "price": price, "cost": cost,
                                    "venue": "pool" if dst in pools else "exchange"})
             if dst in deposits:
                 book.add(dst, v, price if price is not None else float("nan"), ts, "deposit")
@@ -178,6 +182,112 @@ def build_positions(transfers: List[dict], hot: Set[str], pools: Set[str], depos
         for amount, cost, acq, origin in pieces:
             book.add(dst, amount, cost if cost is not None else (price or float("nan")), acq or ts, origin)
     return book, sales
+
+
+def _median(xs: List[float]) -> Optional[float]:
+    xs = sorted(xs)
+    return xs[len(xs) // 2] if xs else None
+
+
+def sale_fraction(sale: dict) -> Optional[float]:
+    return min(sale["tokens"] / sale["held"], 1.0) if sale.get("held") else None
+
+
+def profit_multiple(sale: dict) -> Optional[float]:
+    """Sale price over cost, for sales made in profit with a known, non-zero cost."""
+    if sale["price"] and sale["cost"] and sale["price"] > sale["cost"]:
+        return sale["price"] / sale["cost"]
+    return None
+
+
+# Holder size bands by share of supply at the time of a sale. Small wallets dump everything at
+# once while large ones sell in slices (ALT: median 100% below 0.001% of supply, 13% above 0.1%),
+# so a holder's priors come from sales by wallets of its own size.
+SIZE_BANDS = [0.001, 0.0001, 0.00001, 0.0]
+
+
+def size_band(share: float) -> float:
+    return next(b for b in SIZE_BANDS if share >= b)
+
+
+def peer_priors(sales: Dict[str, List[dict]], exclude: Set[str], supply: int) -> Dict[float, dict]:
+    """What holders of this token typically do, per size band, from every wallet's sales: the
+    share of its balance a holder sells at once, and the multiple of cost at which it takes
+    profit. Market wallets, services, deposit addresses, project wallets and traders are left
+    out. A band with fewer than 20 sales borrows from the next band down."""
+    fractions: Dict[float, List[float]] = defaultdict(list)
+    multiples: Dict[float, List[float]] = defaultdict(list)
+    for w, ss in sales.items():
+        if w in exclude or len(ss) >= TRADER_SALES:
+            continue
+        for x in ss:
+            band = size_band(x["held"] / supply) if supply else 0.0
+            f, m = sale_fraction(x), profit_multiple(x)
+            if f is not None:
+                fractions[band].append(f)
+            if m is not None:
+                multiples[band].append(m)
+    out: Dict[float, dict] = {}
+    for i, band in enumerate(SIZE_BANDS):
+        fr, mu = list(fractions[band]), list(multiples[band])
+        for lower in SIZE_BANDS[i + 1:]:
+            if len(fr) >= 20 and len(mu) >= 20:
+                break
+            fr, mu = fr + fractions[lower], mu + multiples[lower]
+        out[band] = {"sell_fraction": _median(fr), "take_profit_multiple": _median(mu),
+                     "n_sales": len(fr), "n_profitable": len(mu)}
+    return out
+
+
+def sell_levels(kind: str, balance: float, cost: Optional[float], own_sales: List[dict],
+                priors: dict, price_now: Optional[float]) -> dict:
+    """A price-triggered holder's two levels, each with the tokens it would sell there:
+
+      break-even   only when underwater: price gets back to cost, sell the usual fraction
+      take-profit  cost x the take-profit multiple, sell the usual fraction of what is left;
+                   a holder already past it sells at today's price
+
+    The fraction and multiple are the wallet's own medians with two or more sales of that
+    kind, otherwise the peer priors for its size band. Other kinds have no price levels."""
+    none = {"breakeven_price": None, "breakeven_tokens": 0.0, "takeprofit_price": None, "takeprofit_tokens": 0.0,
+            "sell_fraction": None, "take_profit_multiple": None, "confidence": None}
+    if kind != "price" or not cost or not price_now:
+        return none
+    fracs = [f for f in map(sale_fraction, own_sales) if f is not None]
+    mults = [m for m in map(profit_multiple, own_sales) if m is not None]
+    f = _median(fracs) if len(fracs) >= 2 else priors["sell_fraction"]
+    m = _median(mults) if len(mults) >= 2 else priors["take_profit_multiple"]
+    if f is None or m is None:
+        return none
+    out = dict(none, sell_fraction=f, take_profit_multiple=m,
+               confidence="high" if len(fracs) >= 5 else "medium" if len(fracs) >= 2 else "low")
+    left = balance
+    if cost > price_now:
+        out.update(breakeven_price=cost, breakeven_tokens=f * left)
+        left -= f * left
+    out.update(takeprofit_price=max(cost * m, price_now), takeprofit_tokens=f * left)
+    return out
+
+
+def supply_curve(holders: List[dict], price_now: float, max_multiple: float = 3.0,
+                 step_pct: float = 5.0) -> List[dict]:
+    """Tokens price-triggered holders would sell, by price step from today's price up to
+    `max_multiple` times it: each step's own tokens and the running total, split by level."""
+    edges = [price_now]
+    while edges[-1] < price_now * max_multiple:
+        edges.append(edges[-1] * (1 + step_pct / 100))
+    rows, cum = [], 0.0
+    for i, (lo, hi) in enumerate(zip(edges, edges[1:])):
+        # Steps are (lo, hi]; the first also takes levels sitting exactly at today's price.
+        inside = lambda p: p is not None and (lo <= p <= hi if i == 0 else lo < p <= hi)
+        be = [(h["breakeven_tokens"], h) for h in holders if inside(h["breakeven_price"])]
+        tp = [(h["takeprofit_tokens"], h) for h in holders if inside(h["takeprofit_price"])]
+        step = sum(t for t, _ in be) + sum(t for t, _ in tp)
+        cum += step
+        rows.append({"price_from": lo, "price_to": hi, "breakeven_tokens": sum(t for t, _ in be),
+                     "takeprofit_tokens": sum(t for t, _ in tp), "step_tokens": step, "cumulative_tokens": cum,
+                     "step_usd": step * (lo + hi) / 2, "wallets": len({h["address"] for _, h in be + tp})})
+    return rows
 
 
 def ensure_history(chain: str, token: str, cache: Cache, progress: Callable[[str], None] = lambda m: None) -> None:
@@ -240,12 +350,18 @@ def holder_positions(chain: str, token: str, top_n: int = 100, as_of: Optional[s
     progress(f"{len(project)} project wallets")
     book, sales = build_positions(transfers, hot, pools, deposits, price_on)
 
+    price_now = prices.get(day(end_ts - 1))
     raw: Dict[str, int] = defaultdict(int)
     for t in transfers:
         raw[t["from"]] -= t["value"]
         raw[t["to"]] += t["value"]
     supply = sum(v for a, v in raw.items() if a != ZERO and v > 0)
     ranked = sorted(((v, a) for a, v in raw.items() if a != ZERO and v > 0), reverse=True)
+    priors = peer_priors(sales, hot | pools | deposits | project, supply)
+    for band, p in priors.items():
+        progress(f"priors for holders of {band:.3%}+ of supply: sell {p['sell_fraction'] or 0:.0%} at once "
+                 f"({p['n_sales']} sales), take profit at {p['take_profit_multiple'] or 0:.2f}x cost "
+                 f"({p['n_profitable']} profitable)")
     mismatched = 0
     holders, excluded = [], []
     for bal, w in ranked:
@@ -276,13 +392,15 @@ def holder_positions(chain: str, token: str, top_n: int = 100, as_of: Optional[s
         s = sales[w]
         multiples = sorted(x["price"] / x["cost"] for x in s if x["price"] and x["cost"])
         zero_share = zero / bal
+        kind = ("trader" if len(s) >= TRADER_SALES else "time" if zero_share >= 0.5
+                else "price" if qty else "unknown")
+        cost_basis = (sum(l[0] * l[1] for l in priced) / qty) if qty else None
         holders.append({
             "address": w,
-            "kind": ("trader" if len(s) >= TRADER_SALES else "time" if zero_share >= 0.5
-                     else "price" if qty else "unknown"),
+            "kind": kind,
             "balance": bal / scale,
             "share_of_supply": bal / supply,
-            "cost_basis_usd": (sum(l[0] * l[1] for l in priced) / qty) if qty else None,
+            "cost_basis_usd": cost_basis,
             "zero_cost_share": zero_share,
             "origins": json.dumps({o: round(sum(l[0] for l in lots if l[3] == o) / bal, 4)
                                    for o in sorted({l[3] for l in lots})}),
@@ -291,9 +409,11 @@ def holder_positions(chain: str, token: str, top_n: int = 100, as_of: Optional[s
             "sold_tokens": sum(x["tokens"] for x in s) / scale,
             "median_sale_multiple": multiples[len(multiples) // 2] if multiples else None,
             "last_sale": day(s[-1]["ts"]) if s else None,
+            **sell_levels(kind, bal / scale, cost_basis, s, priors[size_band(bal / supply)], price_now),
         })
     progress(f"{len(holders)} holders modelled, {len(excluded)} large wallets set aside, "
              f"{mismatched} with lots not matching their balance")
     return {"holders": holders, "excluded": excluded, "supply": supply / scale, "lot_mismatches": mismatched,
-            "price_now": prices.get(day(end_ts - 1)),
+            "price_now": price_now, "priors": {f"{b:.5f}": p for b, p in priors.items()},
+            "time_triggered_tokens": sum(h["balance"] for h in holders if h["kind"] == "time"),
             "params": {"chain": chain, "token": token, "top_n": top_n, "as_of": as_of}}

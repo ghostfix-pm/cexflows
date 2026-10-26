@@ -306,3 +306,42 @@ def test_proxy_rate_limit_is_retried_not_returned(monkeypatch):
                         lambda req, timeout=None: io.BytesIO(json.dumps(answers.pop(0)).encode()))
     assert etherscan.is_contract("ethereum", "0x" + "1" * 40) is False
     assert answers == []
+
+
+def test_sell_levels_break_even_then_take_profit():
+    from cexflows.holders import sell_levels
+
+    priors = {"sell_fraction": 0.5, "take_profit_multiple": 2.0}
+    # Underwater at cost 1.0, price 0.5, no history: half at break-even, half of the rest at 2x.
+    lv = sell_levels("price", 1000, 1.0, [], priors, 0.5)
+    assert (lv["breakeven_price"], lv["breakeven_tokens"]) == (1.0, 500)
+    assert (lv["takeprofit_price"], lv["takeprofit_tokens"], lv["confidence"]) == (2.0, 250, "low")
+    # Own history wins with two or more sales: sold a quarter at a time, took profit at 3x.
+    own = [{"tokens": 25, "held": 100, "price": 3.0, "cost": 1.0}, {"tokens": 25, "held": 100, "price": 3.0, "cost": 1.0}]
+    lv = sell_levels("price", 1000, 1.0, own, priors, 1.5)
+    assert lv["breakeven_price"] is None and (lv["takeprofit_price"], lv["takeprofit_tokens"]) == (3.0, 250)
+    # Already past take-profit: sells at today's price. Zero-cost and traders get no levels.
+    assert sell_levels("price", 100, 0.1, [], priors, 1.0)["takeprofit_price"] == 1.0
+    assert sell_levels("time", 100, 0.0, [], priors, 1.0)["takeprofit_price"] is None
+
+
+def test_supply_curve_buckets_levels_by_price():
+    from cexflows.holders import supply_curve
+
+    holders = [{"address": "a", "breakeven_price": 1.08, "breakeven_tokens": 100, "takeprofit_price": 2.0, "takeprofit_tokens": 50},
+               {"address": "b", "breakeven_price": None, "breakeven_tokens": 0, "takeprofit_price": 1.0, "takeprofit_tokens": 10}]
+    rows = supply_curve(holders, 1.0, max_multiple=2.0, step_pct=10)
+    assert rows[0]["takeprofit_tokens"] == 10 and rows[0]["breakeven_tokens"] == 100   # (1.00, 1.10]
+    assert rows[-1]["cumulative_tokens"] == 160
+    assert sum(r["step_tokens"] for r in rows) == 160
+
+
+def test_peer_priors_come_from_wallets_of_the_same_size():
+    from cexflows.holders import peer_priors
+
+    supply = 10_000_000
+    whale = [{"tokens": 1_000, "held": 10_000, "price": 2.0, "cost": 1.0} for _ in range(25)]     # 0.1%: sells 10%
+    small = [{"tokens": 50, "held": 50, "price": 1.1, "cost": 1.0} for _ in range(25)]            # tiny: dumps all
+    priors = peer_priors({"0xw": whale[:12], "0xv": whale[12:], "0xs": small}, set(), supply)
+    assert priors[0.001]["sell_fraction"] == 0.1 and priors[0.001]["take_profit_multiple"] == 2.0
+    assert priors[0.0]["sell_fraction"] == 1.0

@@ -43,6 +43,8 @@ The server runs no SQL. Each supported query is implemented natively under a loc
 
 | 4 | `holder_behaviour` | `token_address`, `chain`, `top_n` (100), `as_of` (date, for backtests) | one row per modelled holder: `address`, `kind` (`price`, `time`, `trader`, `unknown`), `balance`, `share_of_supply`, `cost_basis_usd`, `zero_cost_share`, `origins` (JSON), `oldest_lot`, `n_sales`, `sold_tokens`, `median_sale_multiple`, `last_sale` |
 
+| 5 | `supply_curve` | as query 4, plus `max_multiple` (3) and `step_pct` (5) | one row per price step from today's price: `price_from`, `price_to`, `breakeven_tokens`, `takeprofit_tokens`, `step_tokens`, `cumulative_tokens`, `step_usd`, `wallets`, `time_triggered_tokens` |
+
 `usd_to_cex` is each day's token amount at CoinGecko's daily price for that date, null where
 CoinGecko has no price.
 
@@ -101,9 +103,21 @@ Set aside, not modelled:
 - **Project wallets.** The mint recipient, plus contracts it funds that distribute on.
 - **Other contracts.** Safe multisigs are kept as holders.
 
-`kind` says how a holder is likely to sell. `price`: bought with a real cost. `time`: mostly
+`kind` says how a holder is likely to sell, and the level columns (`breakeven_price` and
+`_tokens`, `takeprofit_price` and `_tokens`, `sell_fraction`, `take_profit_multiple`,
+`confidence`) say where. `price`: bought with a real cost. `time`: mostly
 zero-cost tokens from vesting or airdrops, released on a schedule. `trader`: 100 or more sales,
 a market maker or bot. Every price is CoinGecko's daily close for now.
+
+Each price-triggered holder gets up to two levels. *Break-even*, only when underwater: the
+price gets back to its cost and it sells its usual fraction. *Take-profit*: cost times its
+take-profit multiple, where it sells its usual fraction of what is left. The fraction and
+multiple are the wallet's own medians when it has two or more such sales, otherwise the medians
+of sales by wallets of the same size (bands by share of supply). Small wallets dump everything
+at once and large ones sell in slices, so size matters. `supply_curve` sums the levels by
+price step. Zero-cost holders are a separate constant, since they release on a schedule, not at
+a price. The multiples are learned from the token's own past, so a token that has mostly fallen
+teaches small take-profit multiples.
 
 To make a real Dune query id work against both, map it: `CEXFLOWS_QUERY_MAP=4242424=cex_inflows`.
 A query that isn't implemented gets a 404 that lists what is, never empty rows.
