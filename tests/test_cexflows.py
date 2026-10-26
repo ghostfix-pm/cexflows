@@ -223,3 +223,47 @@ def test_classify_destinations():
     kind = lambda d: classify(d, hot, internal, lambda a: a in contracts, lambda a: a in forwarders)
     assert [kind(d) for d in ("0xhot", "0xben2", "0xpool", "0xdep", "0xfriend")] == \
         ["exchange", "internal", "contract", "deposit", "wallet"]
+
+
+def test_ols_recovers_known_coefficients():
+    from cexflows.eventstudy import ols
+
+    X = [[1.0, x, (x * 7) % 5] for x in range(40)]
+    y = [2.0 + 0.5 * r[1] - 1.5 * r[2] for r in X]
+    b, se, r2 = ols(X, y)
+    assert [round(v, 6) for v in b] == [2.0, 0.5, -1.5] and r2 > 0.999999
+
+
+def test_placebo_shifts_avoid_real_cliff_windows():
+    from datetime import date
+    from cexflows.eventstudy import placebo_shifts
+
+    cliffs = [date(2026, m, 15) for m in range(1, 7)]
+    shifts = placebo_shifts(cliffs, 10)
+    assert 0 not in shifts and 5 not in shifts and -5 not in shifts
+    assert 10 in shifts and -10 in shifts
+    # 18 days after a cliff is 10-13 days before the next one: clear of both windows.
+    assert 18 in shifts
+
+
+def test_cliff_study_finds_a_planted_uplift(monkeypatch):
+    import math
+    from datetime import date, timedelta
+    from cexflows import eventstudy
+
+    start = date(2025, 9, 1)
+    cliffs = [date(2025, 9, 20) + timedelta(days=30 * k) for k in range(8)]
+    inflows, market = [], {}
+    for i in range(300):
+        d = start + timedelta(days=i)
+        vol = 1e6 * (1.5 + math.sin(i / 7.0))
+        bump = 1.5 if any(0 <= (d - c).days < 7 for c in cliffs) else 1.0
+        inflows.append({"day": d.isoformat(), "tokens_to_cex": 100 * (vol / 1e6) ** 0.5 * bump * (1 + 0.05 * math.sin(i * 1.3))})
+        market[d.isoformat()] = {"price": 1 + 0.01 * math.sin(i / 3.0), "volume": vol}
+    monkeypatch.setattr(eventstudy.flows, "daily_inflows", lambda *a, **k: inflows)
+    monkeypatch.setattr(eventstudy, "daily_market", lambda *a, **k: market)
+    res = eventstudy.cliff_study("ethereum", "0x" + "1" * 40, [c.isoformat() for c in cliffs],
+                                 release_tokens=1000, windows=[7])
+    row = res["rows"][0]
+    assert 0.4 < row["uplift"] < 0.6
+    assert row["placebo_share_above"] == 0.0

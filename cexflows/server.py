@@ -60,6 +60,28 @@ def _cohort_flows(params: dict) -> List[dict]:
     return res["rows"]
 
 
+def _cliff_study(params: dict) -> List[dict]:
+    from . import eventstudy
+
+    token = str(params.get("token_address") or "").strip()
+    chain = str(params.get("chain") or "").strip()
+    split = lambda v: [x.strip() for x in (v if isinstance(v, list) else str(v or "").split(",")) if str(x).strip()]
+    dates = split(params.get("cliff_dates"))
+    if not re.fullmatch(r"0x[0-9a-fA-F]{40}", token) or not chain or len(dates) < 3:
+        raise ValueError("cliff_study needs token_address, chain and at least three cliff_dates (YYYY-MM-DD, comma-separated)")
+    release = params.get("release_tokens")
+    res = eventstudy.cliff_study(chain, token, dates, float(release) if release not in (None, "") else None,
+                                 [int(float(w)) for w in split(params.get("windows")) or [3, 7, 10, 15]],
+                                 split(params.get("other_events")),
+                                 progress=lambda m: print(m, file=sys.stderr))
+    return [{**{k: v for k, v in r.items() if k != "events"}, "events": json.dumps(r["events"], sort_keys=True)}
+            for r in res["rows"]]
+
+
+STUDY_COLUMNS = ["window_days", "uplift", "uplift_se", "t_stat", "placebo_n", "placebo_median", "placebo_min",
+                 "placebo_max", "placebo_share_above", "excess_tokens", "release_share", "release_share_low",
+                 "release_share_high", "events", "r2"]
+
 COHORT_COLUMNS = ["cliff_date", "released_tokens", "released_usd", "to_exchange_tokens", "to_deposit_tokens",
                   "to_contract_tokens", "to_wallet_tokens", "to_internal_tokens", "to_unclassified_tokens",
                   "retained_tokens", "exchange_share", "contract_share"]
@@ -67,6 +89,7 @@ COHORT_COLUMNS = ["cliff_date", "released_tokens", "released_usd", "to_exchange_
 QUERIES: Dict[str, tuple] = {
     "cex_inflows": (1, _cex_inflows, ["day", "tokens_to_cex", "usd_to_cex", "n_transfers", "by_exchange"]),
     "cohort_flows": (2, _cohort_flows, COHORT_COLUMNS),
+    "cliff_study": (3, _cliff_study, STUDY_COLUMNS),
 }
 
 

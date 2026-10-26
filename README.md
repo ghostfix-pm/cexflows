@@ -39,6 +39,8 @@ The server runs no SQL. Each supported query is implemented natively under a loc
 | 1 | `cex_inflows` | `token_address`, `chain` (`ethereum`, `arbitrum`), `days` (default 365) | `day`, `tokens_to_cex`, `usd_to_cex`, `n_transfers`, `by_exchange` (JSON) |
 | 2 | `cohort_flows` | `token_address`, `chain`, `cliff_dates` (comma-separated), `release_days` (2), `follow_days` (30) | one row per cliff plus an `all` row: `released_tokens`, `released_usd`, `to_exchange_tokens`, `to_deposit_tokens`, `to_contract_tokens`, `to_wallet_tokens`, `to_internal_tokens`, `to_unclassified_tokens`, `retained_tokens`, `exchange_share`, `contract_share` |
 
+| 3 | `cliff_study` | `token_address`, `chain`, `cliff_dates` (at least 3), `release_tokens` (per cliff, optional), `windows` (`3,7,10,15`), `other_events` (dates to control for) | one row per window: `uplift`, `uplift_se`, `t_stat`, `placebo_n`, `placebo_median`, `placebo_min`, `placebo_max`, `placebo_share_above`, `excess_tokens`, `release_share` with `release_share_low`/`_high` (95%), `events` (JSON), `r2` |
+
 `usd_to_cex` is each day's token amount at CoinGecko's daily price for that date, null where
 CoinGecko has no price.
 
@@ -64,6 +66,21 @@ rather than counted as selling. Beneficiaries who claim after the release window
 contracts stream continuously rather than paying on the cliff, are missed, so `released_tokens`
 is a sample of the scheduled unlock. Also runnable directly:
 `python -m cexflows.cohorts --chain arbitrum --token 0x... --cliffs 2026-04-15,2026-05-16,...`.
+
+### Cliff event study
+
+`cliff_study` asks whether exchange inflows rise after unlock cliffs beyond what the market
+explains. Daily inflow swings threefold on its own, so a before/after comparison is noise.
+Instead it regresses log daily inflow on log CoinGecko volume, the day's absolute log return, a
+trend, a flag for each `other_events` window, and a flag for the W days after any cliff.
+`uplift` is the flag's effect per day. The placebo refits with every cliff moved by shifts whose
+windows miss all real cliff windows; `placebo_share_above` is the fraction of those that beat the
+real estimate, so 0 means the cliffs stand out from ordinary month-to-month variation.
+`release_share` is uplift times median daily inflow times W over `release_tokens`: the share of
+each release that reached the labelled exchanges within W days, a floor on exchange
+sell-through because label coverage is partial. Long windows leave few valid shifts when cliffs
+are monthly, so read the placebo at 10 days or less. Also runnable directly:
+`python -m cexflows.eventstudy --chain ethereum --token 0x... --cliffs ... --release 1.5e8`.
 
 To make a real Dune query id work against both, map it: `CEXFLOWS_QUERY_MAP=4242424=cex_inflows`.
 A query that isn't implemented gets a 404 that lists what is, never empty rows.

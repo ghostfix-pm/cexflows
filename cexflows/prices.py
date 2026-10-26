@@ -13,7 +13,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Dict, Optional, Tuple
 
 from .cache import Cache
@@ -85,3 +85,30 @@ def daily_prices(chain: str, token: str, start_ts: int, end_ts: int,
         cache.store_prices(chain, token, points)
         have = cache.prices(chain, token, day(start_ts), day(end_ts))
     return have
+
+
+def daily_market(chain: str, token: str, start_ts: int, end_ts: int) -> Dict[str, Dict[str, float]]:
+    """UTC day -> {"price": 00:00 UTC price, "volume": that day's 24h USD trading volume}.
+
+    CoinGecko stamps each volume with the end of its 24 hours, so a day's volume is the first
+    point of the following day. Not cached: one call covers a whole study.
+    """
+    platform = PLATFORMS.get(chain.lower())
+    if not platform:
+        raise ValueError(f"no CoinGecko platform for chain {chain!r}")
+    base, headers = endpoint()
+    q = urllib.parse.urlencode({"vs_currency": "usd", "from": int(start_ts) - 86400, "to": int(end_ts) + 2 * 86400})
+    data = _get(f"{base}/coins/{platform}/contract/{token.lower()}/market_chart/range?{q}", headers)
+    day = lambda ms: datetime.fromtimestamp(ms / 1000, timezone.utc).strftime("%Y-%m-%d")
+    first_price: Dict[str, float] = {}
+    first_volume: Dict[str, float] = {}
+    for ms, p in data.get("prices", []):
+        first_price.setdefault(day(ms), float(p))
+    for ms, v in data.get("total_volumes", []):
+        first_volume.setdefault(day(ms), float(v))
+    out = {}
+    for d, p in first_price.items():
+        nxt = datetime.strftime(datetime.strptime(d, "%Y-%m-%d") + timedelta(days=1), "%Y-%m-%d")
+        if nxt in first_volume:
+            out[d] = {"price": p, "volume": first_volume[nxt]}
+    return out
