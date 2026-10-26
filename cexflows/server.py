@@ -103,7 +103,8 @@ def _supply_curve(params: dict) -> List[dict]:
                                    progress=lambda m: print(m, file=sys.stderr))
     rows = holders.supply_curve(res["holders"], res["price_now"],
                                 max_multiple=float(params.get("max_multiple") or 3),
-                                step_pct=float(params.get("step_pct") or 5))
+                                step_pct=float(params.get("step_pct") or 5),
+                                target_price=float(params.get("target_price") or 0) or None)
     # Zero-cost holders release on a schedule, not at a price: one constant column, not a level.
     return [{**r, "time_triggered_tokens": res["time_triggered_tokens"]} for r in rows]
 

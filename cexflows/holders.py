@@ -19,6 +19,7 @@ thousands of counterparties).
 """
 from __future__ import annotations
 
+import bisect
 import json
 import urllib.request
 from collections import defaultdict, deque
@@ -270,12 +271,16 @@ def sell_levels(kind: str, balance: float, cost: Optional[float], own_sales: Lis
 
 
 def supply_curve(holders: List[dict], price_now: float, max_multiple: float = 3.0,
-                 step_pct: float = 5.0) -> List[dict]:
+                 step_pct: float = 5.0, target_price: Optional[float] = None) -> List[dict]:
     """Tokens price-triggered holders would sell, by price step from today's price up to
-    `max_multiple` times it: each step's own tokens and the running total, split by level."""
+    `max_multiple` times it: each step's own tokens and the running total, split by level.
+    `target_price` adds a step edge at exactly that price, so a buyback priced to it stops there
+    instead of at the top of the step it falls in."""
     edges = [price_now]
     while edges[-1] < price_now * max_multiple:
         edges.append(edges[-1] * (1 + step_pct / 100))
+    if target_price and price_now < target_price < edges[-1] and min(abs(e / target_price - 1) for e in edges) > 1e-9:
+        bisect.insort(edges, target_price)
     rows, cum = [], 0.0
     for i, (lo, hi) in enumerate(zip(edges, edges[1:])):
         # Steps are (lo, hi]; the first also takes levels sitting exactly at today's price.

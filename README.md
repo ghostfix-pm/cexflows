@@ -43,7 +43,7 @@ The server runs no SQL. Each supported query is implemented natively under a loc
 
 | 4 | `holder_behaviour` | `token_address`, `chain`, `top_n` (100), `as_of` (date, for backtests) | one row per modelled holder: `address`, `kind` (`price`, `time`, `trader`, `unknown`), `balance`, `share_of_supply`, `cost_basis_usd`, `zero_cost_share`, `origins` (JSON), `oldest_lot`, `n_sales`, `sold_tokens`, `median_sale_multiple`, `last_sale` |
 
-| 5 | `supply_curve` | as query 4, plus `max_multiple` (3) and `step_pct` (5) | one row per price step from today's price: `price_from`, `price_to`, `breakeven_tokens`, `takeprofit_tokens`, `step_tokens`, `cumulative_tokens`, `step_usd`, `wallets`, `time_triggered_tokens` |
+| 5 | `supply_curve` | as query 4, plus `max_multiple` (3), `step_pct` (5) and optional `target_price` (adds a step edge there) | one row per price step from today's price: `price_from`, `price_to`, `breakeven_tokens`, `takeprofit_tokens`, `step_tokens`, `cumulative_tokens`, `step_usd`, `wallets`, `time_triggered_tokens` |
 
 `usd_to_cex` is each day's token amount at CoinGecko's daily price for that date, null where
 CoinGecko has no price.

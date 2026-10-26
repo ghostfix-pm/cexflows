@@ -334,6 +334,9 @@ def test_supply_curve_buckets_levels_by_price():
     assert rows[0]["takeprofit_tokens"] == 10 and rows[0]["breakeven_tokens"] == 100   # (1.00, 1.10]
     assert rows[-1]["cumulative_tokens"] == 160
     assert sum(r["step_tokens"] for r in rows) == 160
+    split = supply_curve(holders, 1.0, max_multiple=2.0, step_pct=10, target_price=1.05)
+    assert split[0]["price_to"] == 1.05 and split[0]["breakeven_tokens"] == 0     # 1.08 is past the target
+    assert split[1]["breakeven_tokens"] == 100 and len(split) == len(rows) + 1
 
 
 def test_peer_priors_come_from_wallets_of_the_same_size():
