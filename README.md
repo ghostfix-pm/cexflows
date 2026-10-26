@@ -89,7 +89,7 @@ wallet's first year of history takes a few hundred calls; the cache makes reruns
 ## Labels
 
 `labels/hot_wallets.csv` lists exchange hot wallets per chain (`chain,address,exchange,source`).
-The seed set comes from [eth-labels](https://github.com/dawsbot/eth-labels) (MIT). Exchanges
+The seed set comes from [eth-labels](https://github.com/dawsbot/eth-labels) (MIT, notice in `labels/LICENSE-eth-labels`). Exchanges
 reuse hot-wallet addresses across EVM chains, so a wallet named on one chain and active with the
 token on another is included for that chain, with `source` saying where the name came from.
 
